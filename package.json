@@ -1,0 +1,26 @@
+{
+   "name": "files-app",
+   "version": "1.0.0",
+   "description": "An app that keeps track of contact, photos, and all",
+   "main": "server.js",
+   "type": "module",
+   "scripts": {
+      "client-install": "cd frontend && npm install",
+      "start": "node backend/server.js",
+      "server": "nodemon backend/server.js",
+      "client": "npm start --prefix frontend",
+      "dev": "concurrently \"npm run server\" \"npm run client\""
+   },
+   "author": "Tomiwa Adelae",
+   "license": "MIT",
+   "dependencies": {
+      "bcryptjs": "^2.4.3",
+      "cloudinary": "^1.30.0",
+      "concurrently": "^4.1.1",
+      "dotenv": "^16.0.1",
+      "express": "^4.17.1",
+      "jsonwebtoken": "^8.5.1",
+      "mongoose": "^6.4.0",
+      "nodemon": "^1.19.1"
+   }
+}
