@@ -1,6 +1,7 @@
 @import 'config';
 @import 'utilities';
 @import 'homepage';
+@import 'authentication';
 
 * {
    margin: 0;
@@ -14,4 +15,60 @@ body {
    line-height: 1.7;
    width: 100%;
    min-height: 100vh;
+   background: url('https://images.pexels.com/photos/1181772/pexels-photo-1181772.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+   background-color: $black-color;
+   background-size: cover;
+   background-repeat: no-repeat;
+   background-attachment: fixed;
+   color: $white-color;
+   position: relative;
+}
+
+body::after {
+   content: '';
+   background-color: rgba(0, 0, 0, 0.8);
+   position: absolute;
+   top: 0;
+   right: 0%;
+   left: 0;
+   bottom: 0;
+   z-index: -1;
+}
+
+header {
+   background: transparent;
+   height: 60px;
+   width: 100%;
+   z-index: 3;
+   position: sticky;
+   top: 0;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   @include easeOut();
+
+   .header {
+      width: 95%;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+   }
+
+   h4 {
+      a {
+         font-family: 'Smooch', cursive;
+         margin: 0;
+         letter-spacing: 2px;
+      }
+   }
+
+   a {
+      margin: 0 0.5rem;
+   }
+}
+
+header.active {
+   background-color: rgba($dark-color, 0.9);
+   border-bottom: 2px solid $grey-color;
 }

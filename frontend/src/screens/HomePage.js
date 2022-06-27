@@ -13,10 +13,6 @@ const HomePage = () => {
 
    return (
       <div className="homepage">
-         <img
-            src="https://images.pexels.com/photos/1181772/pexels-photo-1181772.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            alt="Files"
-         />
          <div className="content">
             <h1>Files</h1>
             <h4>あらゆる種類のファイルを追跡します</h4>

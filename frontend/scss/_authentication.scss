@@ -1,0 +1,50 @@
+.register-page {
+   width: 60%;
+   //    background-color: $dark-color;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;
+
+   .head {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+   }
+
+   form {
+      .btn {
+         width: 100%;
+      }
+   }
+
+   strong {
+      color: $grey-color;
+
+      a {
+         padding: 0;
+      }
+   }
+
+   .signup-btn {
+      width: 60%;
+
+      .btn {
+         width: 100%;
+
+         i {
+            // font-size: 1.2rem;
+            margin: 0 0.5rem;
+         }
+
+         .fa-google {
+            color: #db4437;
+         }
+
+         .fa-facebook {
+            color: #3b5998;
+         }
+      }
+   }
+}
