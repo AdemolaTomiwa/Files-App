@@ -1,10 +1,6 @@
 import { GET_ERRORS, CLEAR_ERRORS } from '../constants/errorConstants';
 
-const initialState = {
-   msg: null,
-};
-
-export default function errorReducer(state = initialState, action) {
+export const errorReducer = (state = {}, action) => {
    switch (action.type) {
       case GET_ERRORS:
          return {
@@ -17,4 +13,4 @@ export default function errorReducer(state = initialState, action) {
       default:
          return state;
    }
-}
+};

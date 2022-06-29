@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -9,11 +9,17 @@ const FormStepOne = ({ proceed }) => {
 
    const [email, setEmail] = useState('');
 
-   const userState = useSelector((state) => state.user);
-   const { userLoading, checkSuccess } = userState;
+   const userCheck = useSelector((state) => state.userCheck);
+   const { loading, success } = userCheck;
 
    const errorState = useSelector((state) => state.error);
    const { msg } = errorState;
+
+   useEffect(() => {
+      if (success) {
+         return proceed();
+      }
+   }, [success, proceed]);
 
    const proceedHandler = (e) => {
       e.preventDefault();
@@ -23,7 +29,6 @@ const FormStepOne = ({ proceed }) => {
       };
 
       dispatch(checkUser(userEmail));
-      // proceed();
    };
 
    return (
@@ -57,7 +62,7 @@ const FormStepOne = ({ proceed }) => {
                </button>
             </div>
 
-            {userLoading && <i className="fas fa-spinner spin"></i>}
+            {loading && <i className="fas fa-spinner spin"></i>}
          </form>
 
          <strong>OR</strong>

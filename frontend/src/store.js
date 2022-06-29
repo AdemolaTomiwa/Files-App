@@ -1,7 +1,14 @@
-import { createStore, applyMiddleware, compose } from 'redux';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
-import rootReducer from './reducers';
+import { userCheckReducer } from './reducers/userReducer';
+import { errorReducer } from './reducers/errorReducer';
+
+const reducer = combineReducers({
+   userCheck: userCheckReducer,
+   error: errorReducer,
+});
 
 const initialState = {};
 
@@ -9,13 +16,9 @@ const middleware = [thunk];
 
 // For Development
 const store = createStore(
-   rootReducer,
+   reducer,
    initialState,
-   compose(
-      applyMiddleware(...middleware),
-      window.__REDUX_DEVTOOLS_EXTENSION__ &&
-         window.__REDUX_DEVTOOLS_EXTENSION__()
-   )
+   composeWithDevTools(applyMiddleware(...middleware))
 );
 
 export default store;
