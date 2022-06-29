@@ -1,6 +1,8 @@
-import {combineReducers} from 'redux';
-import customerReducer from './customer';
+import { combineReducers } from 'redux';
+import userReducer from './userReducer';
+import errorReducer from './errorReducer';
 
 export default combineReducers({
-  customers: customerReducer
-})
+   user: userReducer,
+   error: errorReducer,
+});

@@ -6,17 +6,35 @@ const router = express.Router();
 
 import User from '../models/userModel.js';
 
+// Check for existing user
+// POST @/api/users
+// Public
+router.post('/check', (req, res) => {
+   const { email } = req.body;
+
+   // Check if user entered email
+
+   if (!email) {
+      return res.status(400).json({ msg: 'Please enter email!' });
+   }
+
+   User.findOne({ email })
+      .then((user) => {
+         if (user) {
+            res.status(400).json({ msg: 'User already exists!' });
+         } else {
+            res.status(200).json({ success: true });
+         }
+      })
+      .catch((err) => console.log(err));
+});
+
 // Register New User
 // POST @/api/users
 // Public
 router.post('/', (req, res) => {
    // Bring out the details
    const { firstName, lastName, email, password } = req.body;
-
-   // Check if user entered email
-   if (!email) {
-      return res.status(400).json({ msg: 'Please enter email!' });
-   }
 
    // Check is email already exist and return
    User.findOne({ email }).then((user) => {
