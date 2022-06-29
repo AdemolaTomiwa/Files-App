@@ -1,18 +1,29 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { checkUser } from '../actions/userActions';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { checkUser, registerUser } from '../actions/userActions';
 
-import FormStepOne from '../components/FormStepOne';
-import FormStepTwo from '../components/FormStepTwo';
+import FormStepOne from '../components/RegisterFormStepOne';
+import FormStepTwo from '../components/RegisterFormStepTwo';
 
 const RegisterPage = () => {
    const dispatch = useDispatch();
+   const navigate = useNavigate();
 
    const [steps, setSteps] = useState(1);
    const [userEmail, setUserEmail] = useState('');
    const [userFirstName, setUserFirstName] = useState('');
    const [userLastName, setUserLastName] = useState('');
    const [userPassword, setUserPassword] = useState('');
+
+   const userRegister = useSelector((state) => state.userRegister);
+   const { user } = userRegister;
+
+   useEffect(() => {
+      if (user) {
+         navigate('/landing');
+      }
+   }, [navigate, user]);
 
    const proceed = () => {
       setSteps(steps + 1);
@@ -26,7 +37,7 @@ const RegisterPage = () => {
       dispatch(checkUser(email));
    };
 
-   const registerUser = (e) => {
+   const registerNewUser = (e) => {
       const newUser = {
          email: userEmail,
          firstName: userFirstName,
@@ -34,7 +45,7 @@ const RegisterPage = () => {
          password: userPassword,
       };
 
-      console.log(newUser);
+      dispatch(registerUser(newUser));
    };
 
    switch (steps) {
@@ -57,7 +68,7 @@ const RegisterPage = () => {
                setUserFirstName={setUserFirstName}
                setUserLastName={setUserLastName}
                setUserPassword={setUserPassword}
-               registerUser={registerUser}
+               registerUser={registerNewUser}
             />
          );
       default:

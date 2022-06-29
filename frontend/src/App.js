@@ -5,11 +5,11 @@ import store from './store';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
-import Test from './components/Test';
 import './css/style.css';
 import HomePage from './screens/HomePage';
 import LoginPage from './screens/LoginPage';
 import RegisterPage from './screens/RegisterPage';
+import LandingPage from './screens/LandingPage';
 
 class App extends Component {
    render() {
@@ -22,7 +22,7 @@ class App extends Component {
                      <Route path="/" element={<HomePage />} />
                      <Route path="/register" element={<RegisterPage />} />
                      <Route path="/login" element={<LoginPage />} />
-                     <Route path="/test" element={<Test />} />
+                     <Route path="/landing" element={<LandingPage />} />
                   </Routes>
                </div>
             </Router>

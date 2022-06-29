@@ -6,6 +6,29 @@ const router = express.Router();
 
 import User from '../models/userModel.js';
 
+// Check for existing user
+// POST @/api/auth/check
+// Public
+router.post('/check', (req, res) => {
+   const { email } = req.body;
+
+   // Check if user entered email
+
+   if (!email) {
+      return res.status(400).json({ msg: 'Please enter email!' });
+   }
+
+   User.findOne({ email })
+      .then((user) => {
+         if (!user) {
+            res.status(400).json({ msg: 'User does not exist! Sign up!' });
+         } else {
+            res.status(200).json({ success: true });
+         }
+      })
+      .catch((err) => console.log(err));
+});
+
 // Login existing User
 // POST @/api/auth
 // Public

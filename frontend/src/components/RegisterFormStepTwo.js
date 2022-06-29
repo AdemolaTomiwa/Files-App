@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { clearErrors } from '../actions/errorActions';
+import Loader from './Loader';
+import Message from './Message';
 
 const FormStepTwo = ({
    userFirstName,
@@ -14,10 +16,13 @@ const FormStepTwo = ({
 }) => {
    const dispatch = useDispatch();
 
-   // const [firstName, setFirstName] = useState('');
-   // const [lastName, setLastName] = useState('');
-   // const [password, setPassword] = useState('');
    const [showPassword, setshowPassword] = useState(false);
+
+   const userRegister = useSelector((state) => state.userRegister);
+   const { loading } = userRegister;
+
+   const errorState = useSelector((state) => state.error);
+   const { msg } = errorState;
 
    const togglePassword = () => {
       setshowPassword(!showPassword);
@@ -32,14 +37,6 @@ const FormStepTwo = ({
 
       // Register user through Register page
       registerUser();
-
-      // const newUser = {
-      //    firstName,
-      //    lastName,
-      //    password,
-      // };
-
-      // console.log(newUser);
    };
 
    return (
@@ -50,6 +47,8 @@ const FormStepTwo = ({
             </h3>
             <p>We keep track of all kinds of files</p>
          </div>
+
+         {msg && <Message msg={msg} variant="error" />}
 
          <form onSubmit={onSubmit}>
             <div>
@@ -82,24 +81,11 @@ const FormStepTwo = ({
             </div>
 
             <div>
-               <button className="btn btn-primary">Login</button>
+               <button className="btn btn-primary">
+                  {loading ? <Loader /> : 'Register'}
+               </button>
             </div>
          </form>
-
-         <strong>OR</strong>
-
-         <div className="signup-btn">
-            <div>
-               <button className="btn btn-white">
-                  <i className="fab fa-google"></i> Continue with Google
-               </button>
-            </div>
-            <div>
-               <button className="btn btn-white">
-                  <i className="fab fa-facebook"></i> Continue with Facebook
-               </button>
-            </div>
-         </div>
 
          <strong>
             Already have an account? <Link to="/login">Log In</Link>

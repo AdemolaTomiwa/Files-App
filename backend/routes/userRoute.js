@@ -46,7 +46,9 @@ router.post('/', (req, res) => {
       if (!firstName || !lastName || !password) {
          res.status(400).json({ msg: 'Please enter fields!' });
       } else if (password.length < 6) {
-         res.status(400).json({ msg: 'Password length should be at least 6!' });
+         res.status(400).json({
+            msg: 'Password length should be at least 6 character long!',
+         });
       } else {
          // Create new user object
          const newUser = new User({
