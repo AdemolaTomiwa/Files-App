@@ -1,14 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+import Loader from './Loader';
 
-import { checkUser } from '../actions/userActions';
+import Message from './Message';
 
-const FormStepOne = ({ proceed }) => {
-   const dispatch = useDispatch();
-
-   const [email, setEmail] = useState('');
-
+const FormStepOne = ({ proceed, userEmail, setUserEmail, checkEmail }) => {
    const userCheck = useSelector((state) => state.userCheck);
    const { loading, success } = userCheck;
 
@@ -24,11 +21,8 @@ const FormStepOne = ({ proceed }) => {
    const proceedHandler = (e) => {
       e.preventDefault();
 
-      const userEmail = {
-         email,
-      };
-
-      dispatch(checkUser(userEmail));
+      // Confirm email through Register Page
+      checkEmail();
    };
 
    return (
@@ -44,25 +38,18 @@ const FormStepOne = ({ proceed }) => {
             <div>
                <input
                   type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  value={userEmail}
+                  onChange={(e) => setUserEmail(e.target.value)}
                   placeholder="Enter your email"
                />
             </div>
-            {msg && (
-               <small>
-                  <i className="fas fa-exclamation-circle"></i>
-                  {msg}
-               </small>
-            )}
+            {msg && <Message msg={msg} variant="error" />}
 
             <div>
                <button className="btn btn-primary" onClick={proceedHandler}>
-                  Continue
+                  {loading ? <Loader /> : 'Continue'}
                </button>
             </div>
-
-            {loading && <i className="fas fa-spinner spin"></i>}
          </form>
 
          <strong>OR</strong>

@@ -1,10 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { clearErrors } from '../actions/errorActions';
 
-const FormStepTwo = () => {
-   const [firstName, setFirstName] = useState('');
-   const [lastName, setLastName] = useState('');
-   const [password, setPassword] = useState('');
+const FormStepTwo = ({
+   userFirstName,
+   userLastName,
+   userPassword,
+   setUserFirstName,
+   setUserLastName,
+   setUserPassword,
+   registerUser,
+}) => {
+   const dispatch = useDispatch();
+
+   // const [firstName, setFirstName] = useState('');
+   // const [lastName, setLastName] = useState('');
+   // const [password, setPassword] = useState('');
+   const [showPassword, setshowPassword] = useState(false);
+
+   const togglePassword = () => {
+      setshowPassword(!showPassword);
+   };
+
+   useEffect(() => {
+      dispatch(clearErrors());
+   }, [dispatch]);
+
+   const onSubmit = (e) => {
+      e.preventDefault();
+
+      // Register user through Register page
+      registerUser();
+
+      // const newUser = {
+      //    firstName,
+      //    lastName,
+      //    password,
+      // };
+
+      // console.log(newUser);
+   };
 
    return (
       <div className="register-page">
@@ -15,30 +51,34 @@ const FormStepTwo = () => {
             <p>We keep track of all kinds of files</p>
          </div>
 
-         <form>
+         <form onSubmit={onSubmit}>
             <div>
                <input
                   type="text"
-                  value={firstName}
-                  onChange={(e) => setFirstName(e.target.value)}
+                  value={userFirstName}
+                  onChange={(e) => setUserFirstName(e.target.value)}
                   placeholder="Enter your First Name"
                />
             </div>
             <div>
                <input
                   type="text"
-                  value={lastName}
-                  onChange={(e) => setLastName(e.target.value)}
+                  value={userLastName}
+                  onChange={(e) => setUserLastName(e.target.value)}
                   placeholder="Enter your Last Name"
                />
             </div>
-            <div>
+            <div className="password">
                <input
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  type={showPassword ? 'text' : 'password'}
+                  value={userPassword}
+                  onChange={(e) => setUserPassword(e.target.value)}
                   placeholder="Enter your Password"
                />
+               <i
+                  onClick={togglePassword}
+                  className={showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'}
+               ></i>
             </div>
 
             <div>

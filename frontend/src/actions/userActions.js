@@ -3,6 +3,9 @@ import {
    USER_CHECK_FAIL,
    USER_CHECK_REQUEST,
    USER_CHECK_SUCCESS,
+   USER_REGISTER_FAIL,
+   USER_REGISTER_REQUEST,
+   USER_REGISTER_SUCCESS,
 } from '../constants/userConstants';
 
 import { returnErrors } from './errorActions';
@@ -27,5 +30,29 @@ export const checkUser = (userEmail) => (dispatch) => {
       .catch((err) => {
          dispatch(returnErrors(err.response.data.msg));
          dispatch({ type: USER_CHECK_FAIL });
+      });
+};
+
+export const registerUser = (user) => (dispatch) => {
+   dispatch({
+      type: USER_REGISTER_REQUEST,
+   });
+
+   const config = {
+      headers: {
+         'Content-type': 'application/json',
+      },
+   };
+   axios
+      .post('/api/users', user, config)
+      .then((res) => {
+         dispatch({
+            type: USER_REGISTER_SUCCESS,
+            payload: res.data,
+         });
+      })
+      .catch((err) => {
+         dispatch(returnErrors(err.response.data.msg));
+         dispatch({ type: USER_REGISTER_FAIL });
       });
 };
