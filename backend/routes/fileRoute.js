@@ -14,6 +14,23 @@ router.get('/', auth, (req, res) => {
       .catch((err) => res.status(400).json({ msg: 'An error occured!' }));
 });
 
+// Get single user file
+// GET @/api/files/:id
+// Private
+router.get('/:id', auth, (req, res) => {
+   File.findById(req.params.id)
+      .then((file) => {
+         if (file) {
+            res.status(200).json(file);
+         } else {
+            res.status(400).json({
+               msg: 'File does not exist! An error occured!',
+            });
+         }
+      })
+      .catch((err) => res.status(400).json({ msg: 'An error occured!' }));
+});
+
 // Create File
 // POST @/api/files
 // Private

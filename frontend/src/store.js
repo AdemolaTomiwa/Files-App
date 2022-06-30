@@ -8,13 +8,14 @@ import {
    userLoginReducer,
 } from './reducers/userReducer';
 import { errorReducer } from './reducers/errorReducer';
-import { getFilesReducer } from './reducers/fileReducer';
+import { getFilesReducer, getFileReducer } from './reducers/fileReducer';
 
 const reducer = combineReducers({
    userCheck: userCheckReducer,
    userRegister: userRegisterReducer,
    userLogin: userLoginReducer,
    getFiles: getFilesReducer,
+   getFile: getFileReducer,
 
    error: errorReducer,
 });

@@ -44,11 +44,17 @@ const Header = () => {
                   <Link to="/allfiles">
                      <i className="fas fa-folders"></i> All Files
                   </Link>
+                  <strong>
+                     <i className="fas fa-search"></i>
+                  </strong>
                   <Link to="/photos">
                      <i className="fas fa-image"></i> Photos
                   </Link>
                   <Link to="/contacts">
                      <i className="fas fa-address-book"></i> Contacts
+                  </Link>
+                  <Link to="/createfile">
+                     <i className="fas fa-file-plus"></i> Create File
                   </Link>
                   <strong onClick={logout}>
                      <i className="fas fa-sign-out-alt"></i> Logout

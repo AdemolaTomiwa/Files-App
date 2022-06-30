@@ -10,6 +10,8 @@ import HomePage from './screens/HomePage';
 import LoginPage from './screens/LoginPage';
 import RegisterPage from './screens/RegisterPage';
 import LandingPage from './screens/LandingPage';
+import FilePage from './screens/FilePage';
+import Footer from './components/Footer';
 
 class App extends Component {
    render() {
@@ -23,8 +25,10 @@ class App extends Component {
                      <Route path="/register" element={<RegisterPage />} />
                      <Route path="/login" element={<LoginPage />} />
                      <Route path="/landing" element={<LandingPage />} />
+                     <Route path="/files/:id" element={<FilePage />} />
                   </Routes>
                </div>
+               <Footer />
             </Router>
          </Provider>
       );
