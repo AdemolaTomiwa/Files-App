@@ -1,7 +1,11 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { returnErrors } from '../actions/errorActions';
+import { clearErrors, returnErrors } from '../actions/errorActions';
+import { getFiles } from '../actions/fileActions';
+import LandingFile from '../components/LandingFile';
+import Loader from '../components/Loader';
+import Message from '../components/Message';
 
 const LandingPage = () => {
    const navigate = useNavigate();
@@ -13,11 +17,20 @@ const LandingPage = () => {
    const userLogin = useSelector((state) => state.userLogin);
    const { loggedUser } = userLogin;
 
+   const userFiles = useSelector((state) => state.getFiles);
+   const { files, loading } = userFiles;
+
+   const errorState = useSelector((state) => state.error);
+   const { msg } = errorState;
+
    useEffect(() => {
+      dispatch(clearErrors());
       if (!user && !loggedUser) {
          dispatch(returnErrors('Please Login!'));
 
          navigate('/login');
+      } else {
+         dispatch(getFiles());
       }
    }, [user, loggedUser, navigate, dispatch]);
 
@@ -27,138 +40,21 @@ const LandingPage = () => {
             <div className="head">
                <h4>Favourite Files</h4>
             </div>
-            <div className="content">
-               <div className="file">
-                  <div className="head">
-                     <i className="far fa-star"></i>
-                     <i className="fas fa-ellipsis-v"></i>
+            {loading ? (
+               <Loader />
+            ) : msg ? (
+               <Message msg={msg} variant="error" />
+            ) : files.length === 0 ? (
+               <Message msg="You have no files!" variant="success" box />
+            ) : (
+               <>
+                  <div className="content">
+                     {files.map((file) => (
+                        <LandingFile key={file._id} file={file} />
+                     ))}
                   </div>
-                  <div className="body">
-                     <img
-                        src="https://www.biography.com/.image/t_share/MTM2OTI2NTY2Mjg5NTE2MTI5/justin_bieber_2015_photo_courtesy_dfree_shutterstock_348418241_croppedjpg.jpg"
-                        alt=""
-                     />
-                     <strong>07038803037</strong>
-                  </div>
-               </div>
-               <div className="file">
-                  <div className="head">
-                     <i className="far fa-star"></i>
-                     <i className="fas fa-ellipsis-v"></i>
-                  </div>
-                  <div className="body">
-                     <img
-                        src="https://www.biography.com/.image/t_share/MTM2OTI2NTY2Mjg5NTE2MTI5/justin_bieber_2015_photo_courtesy_dfree_shutterstock_348418241_croppedjpg.jpg"
-                        alt=""
-                     />
-                     <strong>07038803037</strong>
-                  </div>
-               </div>
-               <div className="file">
-                  <div className="head">
-                     <i className="far fa-star"></i>
-                     <i className="fas fa-ellipsis-v"></i>
-                  </div>
-                  <div className="body">
-                     <img
-                        src="https://www.biography.com/.image/t_share/MTM2OTI2NTY2Mjg5NTE2MTI5/justin_bieber_2015_photo_courtesy_dfree_shutterstock_348418241_croppedjpg.jpg"
-                        alt=""
-                     />
-                     <strong>07038803037</strong>
-                  </div>
-               </div>
-               <div className="file">
-                  <div className="head">
-                     <i className="far fa-star"></i>
-                     <i className="fas fa-ellipsis-v"></i>
-                  </div>
-                  <div className="body">
-                     <img
-                        src="https://www.biography.com/.image/t_share/MTM2OTI2NTY2Mjg5NTE2MTI5/justin_bieber_2015_photo_courtesy_dfree_shutterstock_348418241_croppedjpg.jpg"
-                        alt=""
-                     />
-                     <strong>07038803037</strong>
-                  </div>
-               </div>
-               <div className="file">
-                  <div className="head">
-                     <i className="far fa-star"></i>
-                     <i className="fas fa-ellipsis-v"></i>
-                  </div>
-                  <div className="body">
-                     <img
-                        src="https://www.biography.com/.image/t_share/MTM2OTI2NTY2Mjg5NTE2MTI5/justin_bieber_2015_photo_courtesy_dfree_shutterstock_348418241_croppedjpg.jpg"
-                        alt=""
-                     />
-                     <strong>07038803037</strong>
-                  </div>
-               </div>
-               <div className="file">
-                  <div className="head">
-                     <i className="far fa-star"></i>
-                     <i className="fas fa-ellipsis-v"></i>
-                  </div>
-                  <div className="body">
-                     <img
-                        src="https://www.biography.com/.image/t_share/MTM2OTI2NTY2Mjg5NTE2MTI5/justin_bieber_2015_photo_courtesy_dfree_shutterstock_348418241_croppedjpg.jpg"
-                        alt=""
-                     />
-                     <strong>07038803037</strong>
-                  </div>
-               </div>
-               <div className="file">
-                  <div className="head">
-                     <i className="far fa-star"></i>
-                     <i className="fas fa-ellipsis-v"></i>
-                  </div>
-                  <div className="body">
-                     <img
-                        src="https://www.biography.com/.image/t_share/MTM2OTI2NTY2Mjg5NTE2MTI5/justin_bieber_2015_photo_courtesy_dfree_shutterstock_348418241_croppedjpg.jpg"
-                        alt=""
-                     />
-                     <strong>07038803037</strong>
-                  </div>
-               </div>
-               <div className="file">
-                  <div className="head">
-                     <i className="far fa-star"></i>
-                     <i className="fas fa-ellipsis-v"></i>
-                  </div>
-                  <div className="body">
-                     <img
-                        src="https://www.biography.com/.image/t_share/MTM2OTI2NTY2Mjg5NTE2MTI5/justin_bieber_2015_photo_courtesy_dfree_shutterstock_348418241_croppedjpg.jpg"
-                        alt=""
-                     />
-                     <strong>07038803037</strong>
-                  </div>
-               </div>
-               <div className="file">
-                  <div className="head">
-                     <i className="far fa-star"></i>
-                     <i className="fas fa-ellipsis-v"></i>
-                  </div>
-                  <div className="body">
-                     <img
-                        src="https://www.biography.com/.image/t_share/MTM2OTI2NTY2Mjg5NTE2MTI5/justin_bieber_2015_photo_courtesy_dfree_shutterstock_348418241_croppedjpg.jpg"
-                        alt=""
-                     />
-                     <strong>07038803037</strong>
-                  </div>
-               </div>
-               <div className="file">
-                  <div className="head">
-                     <i className="far fa-star"></i>
-                     <i className="fas fa-ellipsis-v"></i>
-                  </div>
-                  <div className="body">
-                     <img
-                        src="https://www.biography.com/.image/t_share/MTM2OTI2NTY2Mjg5NTE2MTI5/justin_bieber_2015_photo_courtesy_dfree_shutterstock_348418241_croppedjpg.jpg"
-                        alt=""
-                     />
-                     <strong>07038803037</strong>
-                  </div>
-               </div>
-            </div>
+               </>
+            )}
          </div>
       </div>
    );

@@ -29,7 +29,11 @@ export const userRegisterReducer = (state = {}, action) => {
       case USER_REGISTER_REQUEST:
          return { loading: true };
       case USER_REGISTER_SUCCESS:
-         return { loading: false, user: action.payload.user };
+         return {
+            loading: false,
+            user: action.payload.user,
+            token: action.payload.token,
+         };
       case USER_REGISTER_FAIL:
          return { loading: false };
       case USER_LOGOUT:
@@ -44,7 +48,11 @@ export const userLoginReducer = (state = {}, action) => {
       case USER_LOGIN_REQUEST:
          return { loading: true };
       case USER_LOGIN_SUCCESS:
-         return { loading: false, user: action.payload.user };
+         return {
+            loading: false,
+            user: action.payload.user,
+            token: action.payload.token,
+         };
       case USER_LOGIN_FAIL:
          return { loading: false };
       case USER_LOGOUT:

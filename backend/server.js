@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import userRoute from './routes/userRoute.js';
 import authRoute from './routes/authRoute.js';
+import fileRoute from './routes/fileRoute.js';
 
 dotenv.config();
 
@@ -21,6 +22,7 @@ mongoose
 // Api routes
 app.use('/api/users', userRoute);
 app.use('/api/auth', authRoute);
+app.use('/api/files', fileRoute);
 
 const PORT = process.env.PORT || 5000;
 

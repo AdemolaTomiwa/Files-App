@@ -8,11 +8,14 @@ import {
    userLoginReducer,
 } from './reducers/userReducer';
 import { errorReducer } from './reducers/errorReducer';
+import { getFilesReducer } from './reducers/fileReducer';
 
 const reducer = combineReducers({
    userCheck: userCheckReducer,
    userRegister: userRegisterReducer,
    userLogin: userLoginReducer,
+   getFiles: getFilesReducer,
+
    error: errorReducer,
 });
 
@@ -20,9 +23,13 @@ const userInfoFromStorage = localStorage.getItem('user')
    ? JSON.parse(localStorage.getItem('user'))
    : null;
 
+const userTokenFromStorage = localStorage.getItem('token')
+   ? JSON.parse(localStorage.getItem('token'))
+   : null;
+
 const initialState = {
-   userRegister: { user: userInfoFromStorage },
-   userLogin: { user: userInfoFromStorage },
+   userRegister: { user: userInfoFromStorage, token: userTokenFromStorage },
+   userLogin: { user: userInfoFromStorage, token: userTokenFromStorage },
 };
 
 const middleware = [thunk];

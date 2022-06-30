@@ -139,6 +139,22 @@ form {
    font-weight: bolder;
 }
 
+.success-message-box {
+   background-color: $success-color;
+   color: $white-color;
+   font-weight: bolder;
+   padding: 0.5rem;
+   border-radius: 5px;
+}
+
+.error-message-box {
+   background-color: $danger-color;
+   color: $white-color;
+   font-weight: bolder;
+   padding: 0.5rem;
+   border-radius: 5px;
+}
+
 .error-message {
    color: $danger-color;
    font-weight: bolder;

@@ -1,8 +1,10 @@
 .landing-page {
    .favorite-files {
+      h4 {
+         margin-bottom: 1rem;
+      }
       .content {
          margin: 1rem 0;
-         //  background-color: red;
          height: 100%;
          display: grid;
          grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -32,6 +34,13 @@
                align-items: center;
                justify-content: center;
                flex-direction: column;
+
+               .icon {
+                  i {
+                     font-size: 6rem;
+                     margin-bottom: 1rem;
+                  }
+               }
                img {
                   width: 120px;
                   margin-bottom: 1rem;
