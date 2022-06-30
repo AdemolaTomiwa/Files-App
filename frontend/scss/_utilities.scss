@@ -10,10 +10,6 @@ img {
    min-height: 80vh;
 }
 
-span {
-   color: $grey-color;
-}
-
 @mixin easeOut {
    transition: all ease-out 0.5s;
 }
