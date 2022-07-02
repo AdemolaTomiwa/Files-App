@@ -12,6 +12,8 @@ import RegisterPage from './screens/RegisterPage';
 import LandingPage from './screens/LandingPage';
 import FilePage from './screens/FilePage';
 import Footer from './components/Footer';
+import CreateFilePage from './screens/CreateFilePage';
+import Test from './screens/Test';
 
 class App extends Component {
    render() {
@@ -26,6 +28,8 @@ class App extends Component {
                      <Route path="/login" element={<LoginPage />} />
                      <Route path="/landing" element={<LandingPage />} />
                      <Route path="/files/:id" element={<FilePage />} />
+                     <Route path="/createfile" element={<CreateFilePage />} />
+                     <Route path="/test" element={<Test />} />
                   </Routes>
                </div>
                <Footer />

@@ -7,10 +7,6 @@ const fileSchema = new mongoose.Schema(
          required: true,
          ref: 'User',
       },
-      userObj: {
-         type: Object,
-         required: true,
-      },
       fileName: {
          type: String,
          required: true,

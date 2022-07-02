@@ -1,5 +1,9 @@
 import axios from 'axios';
 import {
+   CREATE_FILE_FAIL,
+   CREATE_FILE_REQUEST,
+   CREATE_FILE_RESET,
+   CREATE_FILE_SUCCESS,
    GET_FILES_FAIL,
    GET_FILES_REQUEST,
    GET_FILES_SUCCESS,
@@ -42,5 +46,23 @@ export const getFile = (id) => (dispatch, getState) => {
       .catch((err) => {
          dispatch(returnErrors(err.response.data.msg));
          dispatch({ type: GET_FILE_FAIL });
+      });
+};
+
+export const createNewFile = (file) => (dispatch, getState) => {
+   dispatch({ type: CREATE_FILE_REQUEST });
+
+   axios
+      .post('/api/files', file, tokenConfig(getState))
+      .then((res) => {
+         dispatch({
+            type: CREATE_FILE_SUCCESS,
+            payload: res.data,
+         });
+         dispatch({ type: CREATE_FILE_RESET });
+      })
+      .catch((err) => {
+         dispatch(returnErrors(err.response.data.msg));
+         dispatch({ type: CREATE_FILE_FAIL });
       });
 };

@@ -8,7 +8,11 @@ import {
    userLoginReducer,
 } from './reducers/userReducer';
 import { errorReducer } from './reducers/errorReducer';
-import { getFilesReducer, getFileReducer } from './reducers/fileReducer';
+import {
+   getFilesReducer,
+   getFileReducer,
+   createFileReducer,
+} from './reducers/fileReducer';
 
 const reducer = combineReducers({
    userCheck: userCheckReducer,
@@ -16,7 +20,7 @@ const reducer = combineReducers({
    userLogin: userLoginReducer,
    getFiles: getFilesReducer,
    getFile: getFileReducer,
-
+   createFile: createFileReducer,
    error: errorReducer,
 });
 

@@ -1,4 +1,8 @@
 import {
+   CREATE_FILE_FAIL,
+   CREATE_FILE_REQUEST,
+   CREATE_FILE_RESET,
+   CREATE_FILE_SUCCESS,
    GET_FILES_FAIL,
    GET_FILES_REQUEST,
    GET_FILES_SUCCESS,
@@ -32,6 +36,21 @@ export const getFileReducer = (state = { file: {}, fields: [] }, action) => {
          };
       case GET_FILE_FAIL:
          return { loading: false };
+      default:
+         return state;
+   }
+};
+
+export const createFileReducer = (state = {}, action) => {
+   switch (action.type) {
+      case CREATE_FILE_REQUEST:
+         return { loading: true };
+      case CREATE_FILE_SUCCESS:
+         return { loading: false, success: true, file: action.payload };
+      case CREATE_FILE_FAIL:
+         return { loading: false, success: false };
+      case CREATE_FILE_RESET:
+         return {};
       default:
          return state;
    }

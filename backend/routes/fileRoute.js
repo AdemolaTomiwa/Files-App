@@ -36,14 +36,13 @@ router.get('/:id', auth, (req, res) => {
 // Private
 router.post('/', auth, (req, res) => {
    // Get files from Form
-   const { fileName, fields, user, userObj } = req.body;
+   const { fileName, fields, user } = req.body;
 
    // Create new File Obj
    const newFile = new File({
       fileName,
       fields,
       user,
-      userObj,
    });
 
    // Save new file to Mongo DB
