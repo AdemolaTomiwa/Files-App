@@ -17,6 +17,9 @@ import {
    GET_FILE_FAIL,
    GET_FILE_REQUEST,
    GET_FILE_SUCCESS,
+   UPDATE_FILE_FAIL,
+   UPDATE_FILE_REQUEST,
+   UPDATE_FILE_SUCCESS,
 } from '../constants/fileConstants';
 
 import { returnErrors } from './errorActions';
@@ -94,6 +97,24 @@ export const deleteFileField = (field, id) => (dispatch, getState) => {
          dispatch({
             type: DELETE_FILE_FIELD_FAIL,
          });
+      });
+};
+
+// Update fiile
+export const updateFile = (file) => (dispatch, getState) => {
+   dispatch({ type: UPDATE_FILE_REQUEST });
+
+   axios
+      .put('/api/files/update', file, tokenConfig(getState))
+      .then((res) => {
+         dispatch({
+            type: UPDATE_FILE_SUCCESS,
+            payload: res.data,
+         });
+      })
+      .catch((err) => {
+         dispatch(returnErrors(err.response.data.msg));
+         dispatch({ type: UPDATE_FILE_FAIL });
       });
 };
 

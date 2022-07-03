@@ -16,6 +16,10 @@ import {
    GET_FILE_FAIL,
    GET_FILE_REQUEST,
    GET_FILE_SUCCESS,
+   UPDATE_FILE_FAIL,
+   UPDATE_FILE_REQUEST,
+   UPDATE_FILE_RESET,
+   UPDATE_FILE_SUCCESS,
 } from '../constants/fileConstants';
 
 export const getFilesReducer = (state = { files: [] }, action) => {
@@ -71,6 +75,21 @@ export const deleteFileFieldReducer = (state = {}, action) => {
          return { loading: false, success: true };
       case DELETE_FILE_FIELD_FAIL:
          return { loading: false };
+      default:
+         return state;
+   }
+};
+
+export const updateFileReducer = (state = {}, action) => {
+   switch (action.type) {
+      case UPDATE_FILE_REQUEST:
+         return { loading: true };
+      case UPDATE_FILE_SUCCESS:
+         return { loading: false, file: action.payload, success: true };
+      case UPDATE_FILE_FAIL:
+         return { loading: false };
+      case UPDATE_FILE_RESET:
+         return {};
       default:
          return state;
    }

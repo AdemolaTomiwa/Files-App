@@ -38,10 +38,12 @@
          }
 
          .delete {
-            color: $danger-color;
+            a {
+               color: $danger-color;
 
-            i {
-               color: $grey-color;
+               i {
+                  color: $grey-color;
+               }
             }
          }
       }

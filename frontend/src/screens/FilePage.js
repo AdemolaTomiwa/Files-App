@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteFile, getFile } from '../actions/fileActions';
 import Message from '../components/Message';
@@ -79,20 +79,24 @@ const FilePage = () => {
                {/* Button */}
                <div className="button">
                   <button className="btn btn-primary">
-                     <i className="fas fa-edit"></i> Add Information Field
+                     <Link to={`/addfield/${file._id}`}>
+                        <i className="fas fa-edit"></i> Add Information Field
+                     </Link>
                   </button>
                   <button
                      onClick={deleteFileHandler}
                      className="btn btn-primary delete"
                   >
-                     {deleteFileState.loading ? (
-                        <Loader />
-                     ) : (
-                        <>
-                           <i className="fas fa-trash"></i> Delete{' '}
-                           {file.fileName}
-                        </>
-                     )}
+                     <Link to="">
+                        {deleteFileState.loading ? (
+                           <Loader />
+                        ) : (
+                           <>
+                              <i className="fas fa-trash"></i> Delete{' '}
+                              {file.fileName}
+                           </>
+                        )}
+                     </Link>
                   </button>
                </div>
             </div>

@@ -54,6 +54,32 @@ router.post('/', auth, (req, res) => {
       .catch((err) => res.status(400).json({ msg: 'An error occured!' }));
 });
 
+// Update a file
+// PUT @/api/files/update
+// Private
+router.put('/update', auth, (req, res) => {
+   const { fileName, fields, existingFields, user, id } = req.body;
+
+   File.findById(id)
+      .then((file) => {
+         if (file) {
+            file.fileName = fileName || file.fileName;
+
+            const singleField = existingFields.forEach((fi) => {
+               return fi;
+            });
+
+            console.log(singleField);
+            // const field = [...fields, singleField.field];
+            // console.log(field);
+         } else {
+            res.status(400).json({ msg: 'File not found!' });
+         }
+      })
+      .catch((err) => res.status(400).json({ msg: 'An error occured!' }));
+   // console.log(req.body);
+});
+
 // Delete a file field by updating
 // PUT @/api/files/:id
 // Private

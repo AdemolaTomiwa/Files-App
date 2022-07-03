@@ -14,6 +14,7 @@ import {
    createFileReducer,
    deleteFileFieldReducer,
    deleteFileReducer,
+   updateFileReducer,
 } from './reducers/fileReducer';
 
 const reducer = combineReducers({
@@ -25,6 +26,7 @@ const reducer = combineReducers({
    createFile: createFileReducer,
    deleteFileField: deleteFileFieldReducer,
    deleteFile: deleteFileReducer,
+   updateFile: updateFileReducer,
    error: errorReducer,
 });
 
