@@ -37,6 +37,7 @@ a {
    border-top-color: $white-color;
    border-right-color: $white-color;
    animation: spinner 2s linear infinite;
+   margin: 1rem 0;
 }
 
 @keyframes spinner {

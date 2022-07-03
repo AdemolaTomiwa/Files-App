@@ -54,4 +54,48 @@ router.post('/', auth, (req, res) => {
       .catch((err) => res.status(400).json({ msg: 'An error occured!' }));
 });
 
+// Delete a file field by updating
+// PUT @/api/files/:id
+// Private
+router.put('/field/:id', auth, (req, res) => {
+   const { field } = req.body;
+
+   File.findById(req.params.id)
+      .then((file) => {
+         if (file) {
+            file.fields = file.fields.filter((fil) => fil.id !== field);
+
+            file
+               .save()
+               .then((file) => res.status(201).json(file))
+               .catch((err) =>
+                  res.status(400).json({ msg: 'Field not deleted!' })
+               );
+         } else {
+            res.status(400).json({ msg: 'Field does not exist!' });
+         }
+      })
+      .catch((err) => res.status(400).json({ msg: 'An error occured!' }));
+});
+
+// Delete a single file
+// DELETE @/api/delete/:id
+// Private
+router.delete('/:id', auth, (req, res) => {
+   File.findById(req.params.id)
+      .then((file) => {
+         if (file) {
+            file
+               .remove()
+               .then(() => res.status(200).json({ success: true }))
+               .catch((err) =>
+                  res.status(400).json({ msg: 'An error occured!' })
+               );
+         } else {
+            res.status(400).json({ msg: 'File does not exist!' });
+         }
+      })
+      .catch((err) => res.status(400).json({ msg: 'An error occured!' }));
+});
+
 export default router;

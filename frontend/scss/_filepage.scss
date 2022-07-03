@@ -23,6 +23,29 @@
          }
       }
 
+      .button {
+         .btn {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            color: $grey-color;
+
+            i {
+               font-size: 1.2rem;
+               margin-right: 0.5rem;
+            }
+         }
+
+         .delete {
+            color: $danger-color;
+
+            i {
+               color: $grey-color;
+            }
+         }
+      }
+
       .fields {
          .field {
             background-color: $dark-color;

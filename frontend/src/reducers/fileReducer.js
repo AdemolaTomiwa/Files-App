@@ -3,6 +3,13 @@ import {
    CREATE_FILE_REQUEST,
    CREATE_FILE_RESET,
    CREATE_FILE_SUCCESS,
+   DELETE_FILE_FAIL,
+   DELETE_FILE_FIELD_FAIL,
+   DELETE_FILE_FIELD_REQUEST,
+   DELETE_FILE_FIELD_SUCCESS,
+   DELETE_FILE_REQUEST,
+   DELETE_FILE_RESET,
+   DELETE_FILE_SUCCESS,
    GET_FILES_FAIL,
    GET_FILES_REQUEST,
    GET_FILES_SUCCESS,
@@ -51,6 +58,35 @@ export const createFileReducer = (state = {}, action) => {
          return { loading: false, success: false };
       case CREATE_FILE_RESET:
          return {};
+      default:
+         return state;
+   }
+};
+
+export const deleteFileFieldReducer = (state = {}, action) => {
+   switch (action.type) {
+      case DELETE_FILE_FIELD_REQUEST:
+         return { loading: true };
+      case DELETE_FILE_FIELD_SUCCESS:
+         return { loading: false, success: true };
+      case DELETE_FILE_FIELD_FAIL:
+         return { loading: false };
+      default:
+         return state;
+   }
+};
+
+export const deleteFileReducer = (state = {}, action) => {
+   switch (action.type) {
+      case DELETE_FILE_REQUEST:
+         return { loading: true };
+      case DELETE_FILE_SUCCESS:
+         return { loading: false, success: true };
+      case DELETE_FILE_FAIL:
+         return { loading: false };
+      case DELETE_FILE_RESET: {
+         return {};
+      }
       default:
          return state;
    }

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getFile } from '../actions/fileActions';
+import { deleteFile, getFile } from '../actions/fileActions';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
 import Field from '../components/Field';
@@ -23,6 +23,10 @@ const FilePage = () => {
    const errorState = useSelector((state) => state.error);
    const { msg } = errorState;
 
+   const deleteFileFieldState = useSelector((state) => state.deleteFileField);
+   const deleteFileState = useSelector((state) => state.deleteFile);
+   const { success } = deleteFileState;
+
    useEffect(() => {
       if (!user && !loggedUser) {
          return navigate('/login');
@@ -31,7 +35,15 @@ const FilePage = () => {
       if (!file || file._id !== params.id) {
          dispatch(getFile(params.id));
       }
-   }, [dispatch, navigate, file, loggedUser, user, params]);
+
+      if (success) {
+         return navigate('/landing');
+      }
+   }, [dispatch, navigate, file, loggedUser, user, params, success]);
+
+   const deleteFileHandler = () => {
+      dispatch(deleteFile(file._id));
+   };
 
    return (
       <div className="file-page">
@@ -56,10 +68,32 @@ const FilePage = () => {
 
                {/* Fields */}
 
+               {deleteFileFieldState.loading && <Loader />}
+
                <div className="fields">
                   {fields.map((field, index) => (
-                     <Field field={field} key={index} />
+                     <Field field={field} file_id={file._id} key={index} />
                   ))}
+               </div>
+
+               {/* Button */}
+               <div className="button">
+                  <button className="btn btn-primary">
+                     <i className="fas fa-edit"></i> Add Information Field
+                  </button>
+                  <button
+                     onClick={deleteFileHandler}
+                     className="btn btn-primary delete"
+                  >
+                     {deleteFileState.loading ? (
+                        <Loader />
+                     ) : (
+                        <>
+                           <i className="fas fa-trash"></i> Delete{' '}
+                           {file.fileName}
+                        </>
+                     )}
+                  </button>
                </div>
             </div>
          )}

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 import { returnErrors } from '../actions/errorActions';
 import { createNewFile } from '../actions/fileActions';
 import CreateFileFormField from '../components/CreateFileFormField';
@@ -15,7 +16,7 @@ const CreateFilePage = () => {
    // Local States
    const [fileName, setFileName] = useState('Untitled File');
    const [inputFields, setinputFields] = useState([
-      { name: 'Untitled Field', answer: 'Sample answer' },
+      { name: 'Untitled Field', answer: 'Sample answer', id: uuidv4() },
    ]);
 
    // Global States
@@ -53,7 +54,7 @@ const CreateFilePage = () => {
 
    // Add new input fields
    const addFields = () => {
-      let newField = { name: '', answer: '' };
+      let newField = { name: '', answer: '', id: uuidv4() };
 
       setinputFields([...inputFields, newField]);
    };
