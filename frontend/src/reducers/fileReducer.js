@@ -6,6 +6,7 @@ import {
    DELETE_FILE_FAIL,
    DELETE_FILE_FIELD_FAIL,
    DELETE_FILE_FIELD_REQUEST,
+   DELETE_FILE_FIELD_RESET,
    DELETE_FILE_FIELD_SUCCESS,
    DELETE_FILE_REQUEST,
    DELETE_FILE_RESET,
@@ -79,6 +80,8 @@ export const deleteFileFieldReducer = (state = {}, action) => {
          return { loading: false, success: true };
       case DELETE_FILE_FIELD_FAIL:
          return { loading: false };
+      case DELETE_FILE_FIELD_RESET:
+         return {};
       default:
          return state;
    }

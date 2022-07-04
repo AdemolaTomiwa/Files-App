@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteFile, getFile, updateField } from '../actions/fileActions';
+import { getFile, updateField } from '../actions/fileActions';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
 import Field from '../components/Field';
 import EditFieldModal from '../components/EditFieldModal';
+import ConfirmModal from '../components/ConfirmModal';
+import ConfirmDeleteFileModal from '../components/ConfirmDeleteFileModal';
+import EditFileNameModal from '../components/EditFileNameModal';
 
 const FilePage = () => {
    const params = useParams();
@@ -13,7 +16,12 @@ const FilePage = () => {
    const navigate = useNavigate();
 
    const [openModal, setOpenModal] = useState(false);
+   const [openFileNameModal, setOpenFileNameModal] = useState(false);
+   const [openConfirmModalState, setOpenConfirmModalState] = useState(false);
+   const [openConfirmDeleteFileModalState, setOpenConfirmDeleteFileModalState] =
+      useState(false);
    const [modalField, setModalField] = useState({});
+   const [deleteId, setDeleteId] = useState('');
 
    const userRegister = useSelector((state) => state.userRegister);
    const { user } = userRegister;
@@ -27,7 +35,6 @@ const FilePage = () => {
    const errorState = useSelector((state) => state.error);
    const { msg } = errorState;
 
-   const deleteFileFieldState = useSelector((state) => state.deleteFileField);
    const deleteFileState = useSelector((state) => state.deleteFile);
    const { success } = deleteFileState;
 
@@ -45,10 +52,6 @@ const FilePage = () => {
       }
    }, [dispatch, navigate, file, loggedUser, user, params, success]);
 
-   const deleteFileHandler = () => {
-      dispatch(deleteFile(file._id));
-   };
-
    const openModalHandler = (field) => {
       setOpenModal(true);
 
@@ -57,6 +60,34 @@ const FilePage = () => {
 
    const closeModal = () => {
       setOpenModal(false);
+   };
+
+   const openConfirmModalHandler = (field) => {
+      setOpenConfirmModalState(true);
+
+      setDeleteId(field.id);
+   };
+
+   const closeConfirmModal = () => {
+      setOpenConfirmModalState(false);
+   };
+
+   const openConfirmDeleteFileModalHandler = (field) => {
+      setOpenConfirmDeleteFileModalState(true);
+
+      setDeleteId(field.id);
+   };
+
+   const closeConfirmDeleteFileModal = () => {
+      setOpenConfirmDeleteFileModalState(false);
+   };
+
+   const openFileNameModalHandler = () => {
+      setOpenFileNameModal(true);
+   };
+
+   const closeFileNameModal = () => {
+      setOpenFileNameModal(false);
    };
 
    const updatedFieldHandler = (fieldObject) => {
@@ -83,19 +114,29 @@ const FilePage = () => {
                   <h4>{file.fileName}</h4>
                </div>
                <div className="showcase">
-                  <img
-                     src="https://www.biography.com/.image/t_share/MTM2OTI2NTY2Mjg5NTE2MTI5/justin_bieber_2015_photo_courtesy_dfree_shutterstock_348418241_croppedjpg.jpg"
-                     alt=""
-                  />
+                  <div className="icon">
+                     <i className="fas fa-user-circle"></i>
+                  </div>
                   <div className="details">
-                     <h5>{file.fileName}</h5>
+                     <h5>{file.fileName}</h5>{' '}
+                     <span>
+                        <i
+                           onClick={openFileNameModalHandler}
+                           className="fas fa-edit"
+                        ></i>
+                     </span>
                   </div>
                </div>
 
+               {openFileNameModal && (
+                  <EditFileNameModal
+                     closeFileNameModal={closeFileNameModal}
+                     fileName={file.fileName}
+                     id={file._id}
+                  />
+               )}
+
                {/* Fields */}
-
-               {deleteFileFieldState.loading && <Loader />}
-
                <div className="fields">
                   {fields.map((field, index) => (
                      <Field
@@ -103,6 +144,7 @@ const FilePage = () => {
                         file_id={file._id}
                         key={index}
                         openModal={() => openModalHandler(field)}
+                        openConfirmModal={() => openConfirmModalHandler(field)}
                      />
                   ))}
                </div>
@@ -116,6 +158,15 @@ const FilePage = () => {
                   />
                )}
 
+               {/* Confirm before deleting  */}
+               {openConfirmModalState && (
+                  <ConfirmModal
+                     closeConfirmModal={closeConfirmModal}
+                     id={deleteId}
+                     file_id={file._id}
+                  />
+               )}
+
                {/* Button */}
                <div className="button">
                   <button className="btn btn-primary">
@@ -124,21 +175,23 @@ const FilePage = () => {
                      </Link>
                   </button>
                   <button
-                     onClick={deleteFileHandler}
+                     onClick={openConfirmDeleteFileModalHandler}
                      className="btn btn-primary delete"
                   >
                      <Link to="">
-                        {deleteFileState.loading ? (
-                           <Loader />
-                        ) : (
-                           <>
-                              <i className="fas fa-trash"></i> Delete{' '}
-                              {file.fileName}
-                           </>
-                        )}
+                        <i className="fas fa-trash"></i> Delete {file.fileName}
                      </Link>
                   </button>
                </div>
+
+               {/* Confirm before deleting  */}
+               {openConfirmDeleteFileModalState && (
+                  <ConfirmDeleteFileModal
+                     closeConfirmDeleteFileModal={closeConfirmDeleteFileModal}
+                     id={deleteId}
+                     file_id={file._id}
+                  />
+               )}
             </div>
          )}
       </div>

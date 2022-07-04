@@ -81,6 +81,9 @@ router.put('/update', auth, (req, res) => {
       .catch((err) => res.status(400).json({ msg: 'An error occured!' }));
 });
 
+// Update a field file
+// PUT @/api/files/update/field
+// Private
 router.put('/update/field', auth, (req, res) => {
    const { id, fields } = req.body;
 

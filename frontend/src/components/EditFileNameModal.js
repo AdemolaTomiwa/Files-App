@@ -1,34 +1,35 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateFile } from '../actions/fileActions';
 import Loader from './Loader';
 
-const EditFieldModal = ({ closeModal, modalField, updatedFieldHandler }) => {
-   const [name, setName] = useState(modalField.name);
-   const [answer, setAnswer] = useState(modalField.answer);
+const EditFileNameModal = ({ closeFileNameModal, fileName, id }) => {
+   const dispatch = useDispatch();
 
-   const updateField = useSelector((state) => state.updateField);
+   const [name, setName] = useState(fileName);
+
+   const updateField = useSelector((state) => state.updateFile);
    const { loading, success } = updateField;
 
    useEffect(() => {
       if (success) {
-         closeModal();
+         closeFileNameModal();
       }
-   }, [success, closeModal]);
+   }, [success, closeFileNameModal]);
 
    const updateForm = (e) => {
       e.preventDefault();
 
-      const field = {
-         name,
-         answer,
-         id: modalField.id,
+      const fileNewName = {
+         fileName: name,
+         id,
       };
 
-      updatedFieldHandler(field);
+      dispatch(updateFile(fileNewName));
    };
 
    return (
-      <div className="editfieldmodal">
+      <div className="editfilenamemodal">
          <form onSubmit={updateForm}>
             <div className="box">
                <div className="main">
@@ -41,21 +42,11 @@ const EditFieldModal = ({ closeModal, modalField, updatedFieldHandler }) => {
                      placeholder="Untitled Field e.g email address"
                   />
                </div>
-               <div className="answer">
-                  <input
-                     type="text"
-                     name="answer"
-                     autoComplete="off"
-                     value={answer}
-                     onChange={(e) => setAnswer(e.target.value)}
-                     placeholder="Short answer e.g justin@gmail.com"
-                  />
-               </div>
                <div className="button">
                   <button type="submit" className="btn btn-dark">
                      {loading ? <Loader /> : 'Update'}
                   </button>
-                  <div onClick={closeModal} className="btn btn-danger">
+                  <div onClick={closeFileNameModal} className="btn btn-danger">
                      Close Modal
                   </div>
                </div>
@@ -65,4 +56,4 @@ const EditFieldModal = ({ closeModal, modalField, updatedFieldHandler }) => {
    );
 };
 
-export default EditFieldModal;
+export default EditFileNameModal;

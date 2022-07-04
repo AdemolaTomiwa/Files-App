@@ -13,6 +13,13 @@
          min-height: 350px;
          border-radius: 5px;
 
+         .icon {
+            i {
+               font-size: 12rem;
+               margin-bottom: 1rem;
+            }
+         }
+
          img {
             width: 220px;
             margin: 1rem 0;
@@ -20,6 +27,25 @@
 
          .details {
             margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            span {
+               margin: 0 1rem;
+
+               i {
+                  color: $grey-color;
+                  opacity: 0.2;
+                  @include easeOut();
+                  cursor: pointer;
+
+                  &:hover {
+                     opacity: 1;
+                     color: $white-color;
+                  }
+               }
+            }
          }
       }
 
@@ -157,6 +183,117 @@
 
                &:hover {
                   color: $grey-color;
+               }
+            }
+         }
+      }
+   }
+
+   .editfilenamemodal {
+      background-color: rgba($dark-color, 0.6);
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .box {
+         margin: 1rem 0;
+         background-color: $primary-color;
+         padding: 1rem;
+         border-radius: 5px;
+
+         input {
+            border: none;
+            border-bottom: 2px solid $grey-color;
+            border-radius: 0;
+            padding-top: 0;
+         }
+
+         .main {
+            padding-top: 0.5rem;
+         }
+
+         .answer {
+            margin: 0 1.5rem;
+         }
+
+         .icon {
+            border-top: 2px solid $grey-color;
+            margin: 1.5rem 0 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 0.5rem;
+
+            i {
+               color: $grey-color;
+               font-size: 1.2rem;
+               padding: 0.5rem;
+               cursor: pointer;
+               @include easeOut();
+
+               &:hover {
+                  color: $white-color;
+               }
+            }
+         }
+
+         .button {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .btn {
+               color: $white-color;
+               // margin: 1rem;
+               width: inherit;
+
+               &:hover {
+                  color: $grey-color;
+               }
+            }
+         }
+      }
+   }
+
+   .confirmmodal {
+      background-color: rgba($dark-color, 0.6);
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .content {
+         width: 40%;
+         border-radius: 5px;
+         flex-direction: column;
+         background-color: $primary-color;
+         padding: 1rem;
+
+         h4 {
+            border-bottom: 2px solid $grey-color;
+            display: block;
+            text-align: center;
+         }
+
+         .button {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .btn {
+               width: inherit;
+
+               &-danger:hover {
+                  color: $white-color;
                }
             }
          }

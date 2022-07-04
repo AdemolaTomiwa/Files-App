@@ -1,39 +1,22 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { deleteFileField } from '../actions/fileActions';
+import React from 'react';
 
-const Field = ({ field, file_id, openModal }) => {
-   const dispatch = useDispatch();
-
-   const deleteFileFieldState = useSelector((state) => state.deleteFileField);
-   const { success } = deleteFileFieldState;
-
-   useEffect(() => {
-      if (success) {
-         return window.location.reload();
-      }
-   }, [success]);
-
-   const deleteField = () => {
-      const fieldId = {
-         field: field.id,
-      };
-      dispatch(deleteFileField(fieldId, file_id));
-   };
+const Field = ({ field, openModal, openConfirmModal }) => {
    return (
-      <div className="field">
-         <div className="content">
-            <div className="details">
-               <h5>{field.name}</h5>
-               <h6>{field.answer}</h6>
-            </div>
+      <>
+         <div className="field">
+            <div className="content">
+               <div className="details">
+                  <h5>{field.name}</h5>
+                  <h6>{field.answer}</h6>
+               </div>
 
-            <div className="icons">
-               <i onClick={openModal} className="fas fa-edit"></i>
-               <i onClick={deleteField} className="fas fa-trash"></i>
+               <div className="icons">
+                  <i onClick={openModal} className="fas fa-edit"></i>
+                  <i onClick={openConfirmModal} className="fas fa-trash"></i>
+               </div>
             </div>
          </div>
-      </div>
+      </>
    );
 };
 

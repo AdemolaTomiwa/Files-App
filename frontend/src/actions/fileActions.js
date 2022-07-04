@@ -7,6 +7,7 @@ import {
    DELETE_FILE_FAIL,
    DELETE_FILE_FIELD_FAIL,
    DELETE_FILE_FIELD_REQUEST,
+   DELETE_FILE_FIELD_RESET,
    DELETE_FILE_FIELD_SUCCESS,
    DELETE_FILE_REQUEST,
    DELETE_FILE_RESET,
@@ -94,8 +95,9 @@ export const deleteFileField = (field, id) => (dispatch, getState) => {
       .then((res) => {
          dispatch({
             type: DELETE_FILE_FIELD_SUCCESS,
-            payload: res.data,
          });
+         dispatch({ type: GET_FILE_SUCCESS, payload: res.data });
+         dispatch({ type: DELETE_FILE_FIELD_RESET });
       })
       .catch((err) => {
          dispatch(returnErrors(err.response.data.msg));
