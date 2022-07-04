@@ -58,26 +58,26 @@ router.post('/', auth, (req, res) => {
 // PUT @/api/files/update
 // Private
 router.put('/update', auth, (req, res) => {
-   const { fileName, fields, existingFields, user, id } = req.body;
+   const { fileName, fields, user, id } = req.body;
 
    File.findById(id)
       .then((file) => {
          if (file) {
             file.fileName = fileName || file.fileName;
+            file.fields = fields || file.fields;
+            file.user = user || file.user;
 
-            const singleField = existingFields.forEach((fi) => {
-               return fi;
-            });
-
-            console.log(singleField);
-            // const field = [...fields, singleField.field];
-            // console.log(field);
+            file
+               .save()
+               .then(() => res.status(201).json(file))
+               .catch((err) =>
+                  res.status(400).json({ msg: 'An error occured!' })
+               );
          } else {
             res.status(400).json({ msg: 'File not found!' });
          }
       })
       .catch((err) => res.status(400).json({ msg: 'An error occured!' }));
-   // console.log(req.body);
 });
 
 // Delete a file field by updating

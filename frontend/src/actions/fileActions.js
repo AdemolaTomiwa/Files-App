@@ -109,8 +109,9 @@ export const updateFile = (file) => (dispatch, getState) => {
       .then((res) => {
          dispatch({
             type: UPDATE_FILE_SUCCESS,
-            payload: res.data,
          });
+
+         dispatch({ type: GET_FILE_SUCCESS, payload: res.data });
       })
       .catch((err) => {
          dispatch(returnErrors(err.response.data.msg));
