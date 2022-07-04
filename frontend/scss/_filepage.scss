@@ -116,6 +116,120 @@
             }
          }
       }
+
+      .photofields {
+         background-color: $dark-color;
+         border-radius: 5px;
+         padding: 1rem;
+
+         .head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            h6 {
+               cursor: pointer;
+               padding: 0.5rem 0;
+
+               i {
+                  margin: 0 0.5rem;
+               }
+            }
+         }
+
+         .photos {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            align-content: space-between;
+            grid-gap: 1rem;
+            width: 100%;
+            .photo {
+               display: flex;
+               align-items: center;
+               justify-content: center;
+               position: relative;
+
+               img {
+                  width: 100%;
+                  border-radius: 5px;
+               }
+
+               small {
+                  opacity: 0;
+                  position: absolute;
+                  bottom: 5%;
+                  left: 50%;
+                  transform: translate(-50%, -5%);
+                  text-align: center;
+                  font-weight: bold;
+                  width: 100%;
+                  @include easeOut();
+               }
+
+               &:hover small {
+                  opacity: 1;
+               }
+            }
+         }
+
+         .uploadmodal {
+            background-color: rgba($dark-color, 0.6);
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            width: 100%;
+            margin: auto;
+            z-index: 2;
+
+            .content {
+               margin: 1rem 0;
+               background-color: $primary-color;
+               padding: 1rem 3rem;
+               border-radius: 5px;
+               width: 70%;
+
+               .head {
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  flex-direction: column;
+               }
+
+               .modal {
+                  background-color: $grey-color;
+                  height: 10rem;
+                  color: $dark-color;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  width: 100%;
+                  margin-bottom: 2rem;
+               }
+
+               .button {
+                  display: flex;
+                  align-items: center;
+                  justify-content: space-between;
+
+                  .btn {
+                     color: $white-color;
+                     // margin: 1rem;
+                     width: inherit;
+
+                     &:hover {
+                        color: $grey-color;
+                     }
+                  }
+               }
+            }
+         }
+      }
    }
 
    .editfieldmodal {
@@ -128,6 +242,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      z-index: 2;
 
       .box {
          margin: 1rem 0;
@@ -199,6 +314,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      z-index: 2;
 
       .box {
          margin: 1rem 0;
@@ -270,6 +386,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      z-index: 2;
 
       .content {
          width: 40%;

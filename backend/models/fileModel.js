@@ -12,6 +12,7 @@ const fileSchema = new mongoose.Schema(
          required: true,
       },
       fields: [mongoose.Schema.Types.Mixed],
+      photos: [mongoose.Schema.Types.Mixed],
    },
    {
       strict: false,

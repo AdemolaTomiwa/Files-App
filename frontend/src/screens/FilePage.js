@@ -9,6 +9,7 @@ import EditFieldModal from '../components/EditFieldModal';
 import ConfirmModal from '../components/ConfirmModal';
 import ConfirmDeleteFileModal from '../components/ConfirmDeleteFileModal';
 import EditFileNameModal from '../components/EditFileNameModal';
+import PhotoFields from '../components/PhotoFields';
 
 const FilePage = () => {
    const params = useParams();
@@ -166,6 +167,9 @@ const FilePage = () => {
                      file_id={file._id}
                   />
                )}
+
+               {/* Phot Fields */}
+               <PhotoFields />
 
                {/* Button */}
                <div className="button">
