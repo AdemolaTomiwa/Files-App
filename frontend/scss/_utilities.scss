@@ -96,6 +96,17 @@ h6 {
    &-dark {
       background-color: $dark-color;
       color: $white-color;
+      @include easeOut();
+   }
+
+   &-danger {
+      background-color: $danger-color;
+      color: $white-color;
+      @include easeOut();
+
+      &:hover {
+         color: $grey-color;
+      }
    }
 
    &-white {

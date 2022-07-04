@@ -10,6 +10,7 @@ import File from '../models/fileModel.js';
 // Private
 router.get('/', auth, (req, res) => {
    File.find({ user: req.user.id })
+      .sort({ createdAt: -1 })
       .then((files) => res.status(200).json(files))
       .catch((err) => res.status(400).json({ msg: 'An error occured!' }));
 });
@@ -54,7 +55,7 @@ router.post('/', auth, (req, res) => {
       .catch((err) => res.status(400).json({ msg: 'An error occured!' }));
 });
 
-// Update a file
+// Update and add a field to a file
 // PUT @/api/files/update
 // Private
 router.put('/update', auth, (req, res) => {
@@ -75,6 +76,27 @@ router.put('/update', auth, (req, res) => {
                );
          } else {
             res.status(400).json({ msg: 'File not found!' });
+         }
+      })
+      .catch((err) => res.status(400).json({ msg: 'An error occured!' }));
+});
+
+router.put('/update/field', auth, (req, res) => {
+   const { id, fields } = req.body;
+
+   File.findById(id)
+      .then((file) => {
+         if (file) {
+            file.fields = fields || file.fields;
+
+            file
+               .save()
+               .then(() => res.status(201).json(file))
+               .catch((err) =>
+                  res.status(400).json({ msg: 'An error occured!' })
+               );
+         } else {
+            res.status(400).json({ msg: 'File does not exist!' });
          }
       })
       .catch((err) => res.status(400).json({ msg: 'An error occured!' }));

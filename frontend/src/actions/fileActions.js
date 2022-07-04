@@ -18,7 +18,12 @@ import {
    GET_FILE_REQUEST,
    GET_FILE_SUCCESS,
    UPDATE_FILE_FAIL,
+   UPDATE_FILE_FIELD_FAIL,
+   UPDATE_FILE_FIELD_REQUEST,
+   UPDATE_FILE_FIELD_RESET,
+   UPDATE_FILE_FIELD_SUCCESS,
    UPDATE_FILE_REQUEST,
+   UPDATE_FILE_RESET,
    UPDATE_FILE_SUCCESS,
 } from '../constants/fileConstants';
 
@@ -100,7 +105,7 @@ export const deleteFileField = (field, id) => (dispatch, getState) => {
       });
 };
 
-// Update fiile
+// Update file
 export const updateFile = (file) => (dispatch, getState) => {
    dispatch({ type: UPDATE_FILE_REQUEST });
 
@@ -112,10 +117,29 @@ export const updateFile = (file) => (dispatch, getState) => {
          });
 
          dispatch({ type: GET_FILE_SUCCESS, payload: res.data });
+         dispatch({ type: UPDATE_FILE_RESET });
       })
       .catch((err) => {
          dispatch(returnErrors(err.response.data.msg));
          dispatch({ type: UPDATE_FILE_FAIL });
+      });
+};
+
+// Update a field
+export const updateField = (field) => (dispatch, getState) => {
+   dispatch({ type: UPDATE_FILE_FIELD_REQUEST });
+   axios
+      .put('/api/files/update/field', field, tokenConfig(getState))
+      .then((res) => {
+         dispatch({
+            type: UPDATE_FILE_FIELD_SUCCESS,
+         });
+         dispatch({ type: GET_FILE_SUCCESS, payload: res.data });
+         dispatch({ type: UPDATE_FILE_FIELD_RESET });
+      })
+      .catch((err) => {
+         dispatch(returnErrors(err.response.data.msg));
+         dispatch({ type: UPDATE_FILE_FIELD_FAIL });
       });
 };
 

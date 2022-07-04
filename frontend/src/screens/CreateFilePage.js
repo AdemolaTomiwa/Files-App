@@ -54,7 +54,11 @@ const CreateFilePage = () => {
 
    // Add new input fields
    const addFields = () => {
-      let newField = { name: '', answer: '', id: uuidv4() };
+      let newField = {
+         name: 'Untitled Field',
+         answer: 'Sample answer',
+         id: uuidv4(),
+      };
 
       setinputFields([...inputFields, newField]);
    };

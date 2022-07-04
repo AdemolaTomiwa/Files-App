@@ -17,6 +17,10 @@ import {
    GET_FILE_REQUEST,
    GET_FILE_SUCCESS,
    UPDATE_FILE_FAIL,
+   UPDATE_FILE_FIELD_FAIL,
+   UPDATE_FILE_FIELD_REQUEST,
+   UPDATE_FILE_FIELD_RESET,
+   UPDATE_FILE_FIELD_SUCCESS,
    UPDATE_FILE_REQUEST,
    UPDATE_FILE_RESET,
    UPDATE_FILE_SUCCESS,
@@ -89,6 +93,21 @@ export const updateFileReducer = (state = {}, action) => {
       case UPDATE_FILE_FAIL:
          return { loading: false };
       case UPDATE_FILE_RESET:
+         return {};
+      default:
+         return state;
+   }
+};
+
+export const updateFileFieldReducer = (state = {}, action) => {
+   switch (action.type) {
+      case UPDATE_FILE_FIELD_REQUEST:
+         return { loading: true };
+      case UPDATE_FILE_FIELD_SUCCESS:
+         return { loading: false, file: action.payload, success: true };
+      case UPDATE_FILE_FIELD_FAIL:
+         return { loading: false };
+      case UPDATE_FILE_FIELD_RESET:
          return {};
       default:
          return state;

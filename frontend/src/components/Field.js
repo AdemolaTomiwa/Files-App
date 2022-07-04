@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteFileField } from '../actions/fileActions';
 
-const Field = ({ field, file_id }) => {
+const Field = ({ field, file_id, openModal }) => {
    const dispatch = useDispatch();
 
    const deleteFileFieldState = useSelector((state) => state.deleteFileField);
@@ -29,7 +29,7 @@ const Field = ({ field, file_id }) => {
             </div>
 
             <div className="icons">
-               <i className="fas fa-edit"></i>
+               <i onClick={openModal} className="fas fa-edit"></i>
                <i onClick={deleteField} className="fas fa-trash"></i>
             </div>
          </div>

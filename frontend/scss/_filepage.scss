@@ -91,4 +91,75 @@
          }
       }
    }
+
+   .editfieldmodal {
+      background-color: rgba($dark-color, 0.6);
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .box {
+         margin: 1rem 0;
+         background-color: $primary-color;
+         padding: 1rem;
+         border-radius: 5px;
+
+         input {
+            border: none;
+            border-bottom: 2px solid $grey-color;
+            border-radius: 0;
+            padding-top: 0;
+         }
+
+         .main {
+            padding-top: 0.5rem;
+         }
+
+         .answer {
+            margin: 0 1.5rem;
+         }
+
+         .icon {
+            border-top: 2px solid $grey-color;
+            margin: 1.5rem 0 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 0.5rem;
+
+            i {
+               color: $grey-color;
+               font-size: 1.2rem;
+               padding: 0.5rem;
+               cursor: pointer;
+               @include easeOut();
+
+               &:hover {
+                  color: $white-color;
+               }
+            }
+         }
+
+         .button {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .btn {
+               color: $white-color;
+               // margin: 1rem;
+               width: inherit;
+
+               &:hover {
+                  color: $grey-color;
+               }
+            }
+         }
+      }
+   }
 }

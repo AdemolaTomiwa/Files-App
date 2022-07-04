@@ -1,15 +1,19 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteFile, getFile } from '../actions/fileActions';
+import { deleteFile, getFile, updateField } from '../actions/fileActions';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
 import Field from '../components/Field';
+import EditFieldModal from '../components/EditFieldModal';
 
 const FilePage = () => {
    const params = useParams();
    const dispatch = useDispatch();
    const navigate = useNavigate();
+
+   const [openModal, setOpenModal] = useState(false);
+   const [modalField, setModalField] = useState({});
 
    const userRegister = useSelector((state) => state.userRegister);
    const { user } = userRegister;
@@ -45,6 +49,28 @@ const FilePage = () => {
       dispatch(deleteFile(file._id));
    };
 
+   const openModalHandler = (field) => {
+      setOpenModal(true);
+
+      setModalField(field);
+   };
+
+   const closeModal = () => {
+      setOpenModal(false);
+   };
+
+   const updatedFieldHandler = (fieldObject) => {
+      let fiii = fields.filter((field) => field.id !== fieldObject.id);
+
+      const newFields = {
+         fields: [...fiii, fieldObject],
+         user: user.id,
+         id: params.id,
+      };
+
+      dispatch(updateField(newFields));
+   };
+
    return (
       <div className="file-page">
          {loading ? (
@@ -72,9 +98,23 @@ const FilePage = () => {
 
                <div className="fields">
                   {fields.map((field, index) => (
-                     <Field field={field} file_id={file._id} key={index} />
+                     <Field
+                        field={field}
+                        file_id={file._id}
+                        key={index}
+                        openModal={() => openModalHandler(field)}
+                     />
                   ))}
                </div>
+
+               {/* If modal is open, show edit form */}
+               {openModal && (
+                  <EditFieldModal
+                     closeModal={closeModal}
+                     modalField={modalField}
+                     updatedFieldHandler={updatedFieldHandler}
+                  />
+               )}
 
                {/* Button */}
                <div className="button">
