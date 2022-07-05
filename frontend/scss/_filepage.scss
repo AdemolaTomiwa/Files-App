@@ -150,6 +150,25 @@
                justify-content: center;
                position: relative;
 
+               .head {
+                  position: absolute;
+                  top: 0%;
+                  left: 0;
+                  display: flex;
+                  align-items: center;
+                  justify-content: space-between;
+                  width: 100%;
+
+                  i {
+                     background-color: rgba($dark-color, 0.6);
+                     padding: 0.5rem;
+                     opacity: 0.5;
+                     color: $grey-color;
+                     cursor: pointer;
+                     @include easeOut();
+                  }
+               }
+
                img {
                   width: 100%;
                   height: 250px;
@@ -158,18 +177,33 @@
                }
 
                small {
+                  background-color: rgba($dark-color, 0.6);
                   opacity: 0;
                   position: absolute;
-                  bottom: 5%;
+                  bottom: 0%;
+                  padding: 0.5rem 0;
                   left: 50%;
-                  transform: translate(-50%, -5%);
+                  transform: translate(-50%, -0%);
                   text-align: center;
                   font-weight: bold;
                   width: 100%;
                   @include easeOut();
+
+                  i {
+                     color: $grey-color;
+                     opacity: 0.5;
+                     @include easeOut();
+                     cursor: pointer;
+
+                     &:hover {
+                        opacity: 1;
+                        color: $white-color;
+                     }
+                  }
                }
 
-               &:hover small {
+               &:hover small,
+               &:hover .head i {
                   opacity: 1;
                }
             }
@@ -266,7 +300,6 @@
 
                   .btn {
                      color: $white-color;
-                     // margin: 1rem;
                      width: inherit;
 
                      &:hover {
@@ -340,7 +373,69 @@
 
             .btn {
                color: $white-color;
-               // margin: 1rem;
+               width: inherit;
+
+               &:hover {
+                  color: $grey-color;
+               }
+            }
+         }
+      }
+   }
+
+   .editimagedescmodal {
+      background-color: rgba($dark-color, 0.6);
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+      width: 100%;
+      margin: auto;
+
+      .content {
+         background-color: $primary-color;
+         width: 70%;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         border-radius: 5px;
+
+         .box {
+            .img {
+               display: flex;
+               align-items: center;
+               justify-content: center;
+
+               img {
+                  width: 150px;
+                  height: 150px;
+                  border-radius: 100%;
+                  object-fit: cover;
+               }
+            }
+
+            .input {
+               input {
+                  border: none;
+                  border-bottom: 2px solid $grey-color;
+                  border-radius: 0;
+                  // padding-top: 0;
+               }
+            }
+         }
+
+         .button {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .btn {
+               color: $white-color;
                width: inherit;
 
                &:hover {
@@ -412,7 +507,6 @@
 
             .btn {
                color: $white-color;
-               // margin: 1rem;
                width: inherit;
 
                &:hover {
