@@ -11,6 +11,9 @@ const fileSchema = new mongoose.Schema(
          type: String,
          required: true,
       },
+      favorite: {
+         type: Boolean,
+      },
       fields: [mongoose.Schema.Types.Mixed],
       photos: [mongoose.Schema.Types.Mixed],
    },

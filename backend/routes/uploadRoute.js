@@ -1,13 +1,26 @@
 import express from 'express';
+import cloudinary from '../middleware/cloudinary.js';
 import { auth } from '../middleware/auth.js';
 
 const router = express.Router();
 
-router.post('/', auth, async (req, res) => {
+// Login a User
+// POST @/api/auth
+// Public
+router.post('/', async (req, res) => {
    try {
-      console.log(req.body);
-   } catch (error) {
-      console.log(err);
+      const fileStr = req.body.data;
+
+      const uploadResponse = await cloudinary.uploader.upload(fileStr, {
+         upload_preset: 'files',
+      });
+
+      res.send(uploadResponse.url);
+   } catch (err) {
+      console.error(err);
+      res.status(500).json({
+         msg: 'Something went wrong! Image not uploaded!',
+      });
    }
 });
 

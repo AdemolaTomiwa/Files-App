@@ -115,6 +115,7 @@ const FilePage = () => {
                   <h4>{file.fileName}</h4>
                </div>
                <div className="showcase">
+                  <i className="far fa-star"></i>
                   <div className="icon">
                      <i className="fas fa-user-circle"></i>
                   </div>

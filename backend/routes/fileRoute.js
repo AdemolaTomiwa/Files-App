@@ -43,6 +43,7 @@ router.post('/', auth, (req, res) => {
    const newFile = new File({
       fileName,
       fields,
+      favorite: false,
       user,
    });
 
@@ -59,7 +60,7 @@ router.post('/', auth, (req, res) => {
 // PUT @/api/files/update
 // Private
 router.put('/update', auth, (req, res) => {
-   const { fileName, fields, user, id } = req.body;
+   const { fileName, fields, user, id, photos, favorite } = req.body;
 
    File.findById(id)
       .then((file) => {
@@ -67,6 +68,8 @@ router.put('/update', auth, (req, res) => {
             file.fileName = fileName || file.fileName;
             file.fields = fields || file.fields;
             file.user = user || file.user;
+            file.favorite = favorite || file.favorite;
+            file.photos = photos || file.photos;
 
             file
                .save()

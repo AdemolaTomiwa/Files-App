@@ -12,6 +12,18 @@
          padding: 1rem 0;
          min-height: 350px;
          border-radius: 5px;
+         position: relative;
+
+         .fa-star {
+            position: absolute;
+            top: 3%;
+            left: 2%;
+            transform: translate(-2%, -3%);
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 0.5rem;
+            border-radius: 100%;
+         }
 
          .icon {
             i {
@@ -166,6 +178,11 @@
                      color: $grey-color;
                      cursor: pointer;
                      @include easeOut();
+                  }
+
+                  .fa-trash:hover {
+                     background-color: $danger-color;
+                     color: $white-color;
                   }
                }
 
@@ -424,7 +441,6 @@
                   border: none;
                   border-bottom: 2px solid $grey-color;
                   border-radius: 0;
-                  // padding-top: 0;
                }
             }
          }
