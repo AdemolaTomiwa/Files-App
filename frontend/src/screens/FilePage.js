@@ -31,7 +31,7 @@ const FilePage = () => {
    const { loggedUser } = userLogin;
 
    const getUserFile = useSelector((state) => state.getFile);
-   const { loading, file, fields } = getUserFile;
+   const { loading, file, fields, photos } = getUserFile;
 
    const errorState = useSelector((state) => state.error);
    const { msg } = errorState;
@@ -169,7 +169,7 @@ const FilePage = () => {
                )}
 
                {/* Phot Fields */}
-               <PhotoFields />
+               <PhotoFields id={file._id} photos={photos} />
 
                {/* Button */}
                <div className="button">

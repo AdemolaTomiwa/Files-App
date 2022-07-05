@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import Message from './Message';
+import Photo from './Photo';
 import UploadModal from './UploadModal';
 
-const PhotoFields = () => {
+const PhotoFields = ({ id, photos }) => {
    const [openModal, setOpenModal] = useState(false);
 
    const openModalHandler = () => {
@@ -20,45 +22,22 @@ const PhotoFields = () => {
                <i className="fas fa-plus"></i>Add Photos
             </h6>
          </div>
+         {photos.length === 0 && (
+            <Message msg="You have no photos!" variant="success" box />
+         )}
          <div className="photos">
-            <div className="photo">
-               <img
-                  src="https://www.biography.com/.image/t_share/MTM2OTI2NTY2Mjg5NTE2MTI5/justin_bieber_2015_photo_courtesy_dfree_shutterstock_348418241_croppedjpg.jpg"
-                  alt=""
-               />
-               <small>Justin Bieber's Brother</small>
-            </div>
-            <div className="photo">
-               <img
-                  src="https://www.biography.com/.image/t_share/MTM2OTI2NTY2Mjg5NTE2MTI5/justin_bieber_2015_photo_courtesy_dfree_shutterstock_348418241_croppedjpg.jpg"
-                  alt=""
-               />
-               <small>Justin Bieber's Brother</small>
-            </div>
-            <div className="photo">
-               <img
-                  src="https://www.biography.com/.image/t_share/MTM2OTI2NTY2Mjg5NTE2MTI5/justin_bieber_2015_photo_courtesy_dfree_shutterstock_348418241_croppedjpg.jpg"
-                  alt=""
-               />
-               <small>Justin Bieber's Brother</small>
-            </div>
-            <div className="photo">
-               <img
-                  src="https://www.biography.com/.image/t_share/MTM2OTI2NTY2Mjg5NTE2MTI5/justin_bieber_2015_photo_courtesy_dfree_shutterstock_348418241_croppedjpg.jpg"
-                  alt=""
-               />
-               <small>Justin Bieber's Brother</small>
-            </div>
-            <div className="photo">
-               <img
-                  src="https://www.biography.com/.image/t_share/MTM2OTI2NTY2Mjg5NTE2MTI5/justin_bieber_2015_photo_courtesy_dfree_shutterstock_348418241_croppedjpg.jpg"
-                  alt=""
-               />
-               <small>Justin Bieber's Brother</small>
-            </div>
+            {photos.map((photo, index) => (
+               <Photo key={index} photo={photo} />
+            ))}
          </div>
 
-         {openModal && <UploadModal closeModal={closeModalHandler} />}
+         {openModal && (
+            <UploadModal
+               closeModal={closeModalHandler}
+               photos={photos}
+               id={id}
+            />
+         )}
       </div>
    );
 };

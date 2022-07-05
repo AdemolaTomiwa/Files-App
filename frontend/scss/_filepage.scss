@@ -143,6 +143,7 @@
             align-content: space-between;
             grid-gap: 1rem;
             width: 100%;
+
             .photo {
                display: flex;
                align-items: center;
@@ -151,7 +152,9 @@
 
                img {
                   width: 100%;
+                  height: 250px;
                   border-radius: 5px;
+                  object-fit: cover;
                }
 
                small {
@@ -202,6 +205,18 @@
                }
 
                .modal {
+                  border: 2px dotted $white-color;
+                  height: 10rem;
+                  color: $white-color;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  width: 100%;
+                  margin-bottom: 2rem;
+                  border-radius: 5px;
+               }
+
+               .modal-active {
                   background-color: $grey-color;
                   height: 10rem;
                   color: $dark-color;
@@ -210,6 +225,38 @@
                   justify-content: center;
                   width: 100%;
                   margin-bottom: 2rem;
+                  border-radius: 5px;
+               }
+
+               .desc {
+                  input {
+                     margin: 0.5rem 0;
+                     width: 100%;
+                     padding: 0.7rem 1rem;
+                     outline: none;
+                     border: none;
+                     border-bottom: 2px dotted $grey-color;
+                     font-family: 'Montserrat', sans-serif;
+                     font-weight: bold;
+                     background-color: transparent;
+                     color: $white-color;
+                  }
+               }
+
+               .preview-file {
+                  div {
+                     background-color: $dark-color;
+                     display: flex;
+                     align-items: center;
+                     padding: 0.5rem;
+
+                     img {
+                        width: 50px;
+                        object-fit: cover;
+                        height: 50px;
+                        margin-right: 1rem;
+                     }
+                  }
                }
 
                .button {

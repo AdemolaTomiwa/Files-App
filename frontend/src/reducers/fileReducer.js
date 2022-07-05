@@ -40,7 +40,10 @@ export const getFilesReducer = (state = { files: [] }, action) => {
    }
 };
 
-export const getFileReducer = (state = { file: {}, fields: [] }, action) => {
+export const getFileReducer = (
+   state = { file: {}, fields: [], photos: [] },
+   action
+) => {
    switch (action.type) {
       case GET_FILE_REQUEST:
          return { loading: true };
@@ -49,6 +52,7 @@ export const getFileReducer = (state = { file: {}, fields: [] }, action) => {
             loading: false,
             file: action.payload,
             fields: action.payload.fields,
+            photos: action.payload.photos,
          };
       case GET_FILE_FAIL:
          return { loading: false };
