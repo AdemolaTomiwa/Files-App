@@ -90,7 +90,7 @@ const UploadModal = ({ closeModal, id, photos }) => {
                <p>PNG, JPG, JPEG are allowed</p>
             </div>
             <form
-               className={isDragActive ? 'modal-active' : 'modal'}
+               className={isDragActive ? 'modal-active' : 'upload-modal'}
                {...getRootProps()}
             >
                <input {...getInputProps()} />

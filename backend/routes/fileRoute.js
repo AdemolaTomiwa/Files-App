@@ -10,7 +10,18 @@ import File from '../models/fileModel.js';
 // Private
 router.get('/', auth, (req, res) => {
    File.find({ user: req.user.id })
-      .sort({ createdAt: -1 })
+      .sort({ updatedAt: -1 })
+      .then((files) => res.status(200).json(files))
+      .catch((err) => res.status(400).json({ msg: 'An error occured!' }));
+});
+
+// Get logged in user recent Files
+// GET @/api/files
+// Private
+router.get('/recent', auth, (req, res) => {
+   File.find({ user: req.user.id })
+      .sort({ updatedAt: -1 })
+      .limit(15)
       .then((files) => res.status(200).json(files))
       .catch((err) => res.status(400).json({ msg: 'An error occured!' }));
 });

@@ -11,9 +11,9 @@ import {
    DELETE_FILE_REQUEST,
    DELETE_FILE_RESET,
    DELETE_FILE_SUCCESS,
-   GET_FILES_FAIL,
-   GET_FILES_REQUEST,
-   GET_FILES_SUCCESS,
+   GET_RECENT_FILES_FAIL,
+   GET_RECENT_FILES_REQUEST,
+   GET_RECENT_FILES_SUCCESS,
    GET_FILE_FAIL,
    GET_FILE_REQUEST,
    GET_FILE_SUCCESS,
@@ -29,11 +29,11 @@ import {
 
 export const getFilesReducer = (state = { files: [] }, action) => {
    switch (action.type) {
-      case GET_FILES_REQUEST:
+      case GET_RECENT_FILES_REQUEST:
          return { loading: true };
-      case GET_FILES_SUCCESS:
+      case GET_RECENT_FILES_SUCCESS:
          return { loading: false, files: action.payload };
-      case GET_FILES_FAIL:
+      case GET_RECENT_FILES_FAIL:
          return { loading: false };
       default:
          return state;

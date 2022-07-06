@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import EditImageDescModal from './EditImageDescModal';
+import ImageModal from './ImageModal';
 
 const Photo = ({ photo, updatedDescHandler, openConfirmModal }) => {
    const [openEditModal, setOpenEditModal] = useState(false);
+   const [openImageModal, setOpenImageModal] = useState(false);
 
    const openEditModalHandler = () => {
       setOpenEditModal(true);
@@ -10,6 +12,10 @@ const Photo = ({ photo, updatedDescHandler, openConfirmModal }) => {
 
    const closeModal = () => {
       setOpenEditModal(false);
+   };
+
+   const openModalHandler = () => {
+      setOpenImageModal(true);
    };
 
    return (
@@ -22,7 +28,11 @@ const Photo = ({ photo, updatedDescHandler, openConfirmModal }) => {
                   className="fas fa-trash"
                ></i>
             </div>
-            <img src={photo.url} alt={photo.description} />
+            <img
+               onClick={openModalHandler}
+               src={photo.url}
+               alt={photo.description}
+            />
             <small>
                {photo.description}{' '}
                <i onClick={openEditModalHandler} className="fas fa-edit"></i>
@@ -34,6 +44,16 @@ const Photo = ({ photo, updatedDescHandler, openConfirmModal }) => {
                closeModal={closeModal}
                photo={photo}
                updatedDescHandler={updatedDescHandler}
+            />
+         )}
+
+         {openImageModal && (
+            <ImageModal
+               photo={photo}
+               src="https://source.unsplash.com/NQSWvyVRIJk/800x599"
+               alt="snow"
+               caption="caption"
+               onClose={() => setOpenImageModal(false)}
             />
          )}
       </>

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { clearErrors, returnErrors } from '../actions/errorActions';
-import { getFiles } from '../actions/fileActions';
+import { getRecentFiles } from '../actions/fileActions';
 import LandingFile from '../components/LandingFile';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
@@ -30,7 +30,7 @@ const LandingPage = () => {
 
          navigate('/login');
       } else {
-         dispatch(getFiles());
+         dispatch(getRecentFiles());
       }
    }, [user, loggedUser, navigate, dispatch]);
 
@@ -38,7 +38,7 @@ const LandingPage = () => {
       <div className="landing-page">
          <div className="favorite-files">
             <div className="head">
-               <h4>Favourite Files</h4>
+               <h4>Recent Files</h4>
             </div>
             {loading ? (
                <Loader />
