@@ -10,6 +10,7 @@ import {
 import { errorReducer } from './reducers/errorReducer';
 import {
    getFilesReducer,
+   getRecentFilesReducer,
    getFileReducer,
    createFileReducer,
    deleteFileFieldReducer,
@@ -23,6 +24,7 @@ const reducer = combineReducers({
    userRegister: userRegisterReducer,
    userLogin: userLoginReducer,
    getFiles: getFilesReducer,
+   getRecentFiles: getRecentFilesReducer,
    getFile: getFileReducer,
    createFile: createFileReducer,
    deleteFileField: deleteFileFieldReducer,

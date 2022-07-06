@@ -26,12 +26,33 @@ import {
    UPDATE_FILE_REQUEST,
    UPDATE_FILE_RESET,
    UPDATE_FILE_SUCCESS,
+   GET_FILES_REQUEST,
+   GET_FILES_SUCCESS,
+   GET_FILES_FAIL,
 } from '../constants/fileConstants';
 
 import { returnErrors } from './errorActions';
 import { tokenConfig } from './userActions';
 
 // Get all users files
+export const getFiles = () => (dispatch, getState) => {
+   dispatch({ type: GET_FILES_REQUEST });
+
+   axios
+      .get('/api/files', tokenConfig(getState))
+      .then((res) => {
+         dispatch({
+            type: GET_FILES_SUCCESS,
+            payload: res.data,
+         });
+      })
+      .catch((err) => {
+         dispatch(returnErrors(err.response.data.msg));
+         dispatch({ type: GET_FILES_FAIL });
+      });
+};
+
+// Get all users current files
 export const getRecentFiles = () => (dispatch, getState) => {
    dispatch({ type: GET_RECENT_FILES_REQUEST });
 

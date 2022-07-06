@@ -14,6 +14,7 @@ import FilePage from './screens/FilePage';
 import Footer from './components/Footer';
 import CreateFilePage from './screens/CreateFilePage';
 import AddFieldPage from './screens/AddFieldPage';
+import AllFilesPage from './screens/AllFilesPage';
 
 class App extends Component {
    render() {
@@ -27,6 +28,7 @@ class App extends Component {
                      <Route path="/register" element={<RegisterPage />} />
                      <Route path="/login" element={<LoginPage />} />
                      <Route path="/landing" element={<LandingPage />} />
+                     <Route path="/files" element={<AllFilesPage />} />
                      <Route path="/files/:id" element={<FilePage />} />
                      <Route path="/createfile" element={<CreateFilePage />} />
                      <Route path="/addfield/:id" element={<AddFieldPage />} />

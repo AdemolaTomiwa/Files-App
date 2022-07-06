@@ -41,7 +41,7 @@ const Header = () => {
                </nav>
             ) : (
                <nav>
-                  <Link to="/allfiles">
+                  <Link to="/files">
                      <i className="fas fa-folders"></i> All Files
                   </Link>
                   <strong>

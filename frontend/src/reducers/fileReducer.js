@@ -25,9 +25,25 @@ import {
    UPDATE_FILE_REQUEST,
    UPDATE_FILE_RESET,
    UPDATE_FILE_SUCCESS,
+   GET_FILES_REQUEST,
+   GET_FILES_SUCCESS,
+   GET_FILES_FAIL,
 } from '../constants/fileConstants';
 
 export const getFilesReducer = (state = { files: [] }, action) => {
+   switch (action.type) {
+      case GET_FILES_REQUEST:
+         return { loading: true };
+      case GET_FILES_SUCCESS:
+         return { loading: false, files: action.payload };
+      case GET_FILES_FAIL:
+         return { loading: false };
+      default:
+         return state;
+   }
+};
+
+export const getRecentFilesReducer = (state = { files: [] }, action) => {
    switch (action.type) {
       case GET_RECENT_FILES_REQUEST:
          return { loading: true };

@@ -2,12 +2,12 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { clearErrors, returnErrors } from '../actions/errorActions';
-import { getRecentFiles } from '../actions/fileActions';
+import { getFiles } from '../actions/fileActions';
 import FileBox from '../components/FileBox';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
 
-const LandingPage = () => {
+const AllFilesPage = () => {
    const navigate = useNavigate();
    const dispatch = useDispatch();
 
@@ -17,7 +17,7 @@ const LandingPage = () => {
    const userLogin = useSelector((state) => state.userLogin);
    const { loggedUser } = userLogin;
 
-   const userFiles = useSelector((state) => state.getRecentFiles);
+   const userFiles = useSelector((state) => state.getFiles);
    const { files, loading } = userFiles;
 
    const errorState = useSelector((state) => state.error);
@@ -30,7 +30,7 @@ const LandingPage = () => {
 
          navigate('/login');
       } else {
-         dispatch(getRecentFiles());
+         dispatch(getFiles());
       }
    }, [user, loggedUser, navigate, dispatch]);
 
@@ -38,7 +38,7 @@ const LandingPage = () => {
       <div className="landing-page">
          <div className="favorite-files">
             <div className="head">
-               <h4>Recent Files</h4>
+               <h4>All Files</h4>
             </div>
             {loading ? (
                <Loader />
@@ -60,4 +60,4 @@ const LandingPage = () => {
    );
 };
 
-export default LandingPage;
+export default AllFilesPage;

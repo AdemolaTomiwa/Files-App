@@ -22,13 +22,13 @@
             cursor: pointer;
             border-radius: 5px;
 
-            .head {
-               width: 100%;
-               display: flex;
-               align-items: center;
-               justify-content: space-between;
-               margin-bottom: 1rem;
-            }
+            // .head {
+            //    width: 100%;
+            //    display: flex;
+            //    align-items: center;
+            //    justify-content: space-between;
+            //    margin-bottom: 1rem;
+            // }
 
             .body {
                display: flex;
@@ -38,8 +38,9 @@
 
                .icon {
                   i {
-                     font-size: 6rem;
+                     font-size: 7rem;
                      margin-bottom: 1rem;
+                     margin-top: 1rem;
                   }
                }
                img {
