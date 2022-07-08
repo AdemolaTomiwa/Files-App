@@ -2,6 +2,7 @@
    .file {
       .head {
          margin-bottom: 1rem;
+         text-transform: uppercase;
       }
       .showcase {
          background-color: $dark-color;
@@ -64,6 +65,7 @@
       .button {
          .btn {
             width: 100%;
+            text-transform: uppercase;
             display: flex;
             align-items: center;
             justify-content: flex-start;
@@ -145,83 +147,6 @@
 
                i {
                   margin: 0 0.5rem;
-               }
-            }
-         }
-
-         .photos {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            align-content: space-between;
-            grid-gap: 1rem;
-            width: 100%;
-
-            .photo {
-               display: flex;
-               align-items: center;
-               justify-content: center;
-               position: relative;
-
-               .head {
-                  position: absolute;
-                  top: 0%;
-                  left: 0;
-                  display: flex;
-                  align-items: center;
-                  justify-content: space-between;
-                  width: 100%;
-
-                  i {
-                     background-color: rgba($dark-color, 0.6);
-                     padding: 0.5rem;
-                     opacity: 0.5;
-                     color: $grey-color;
-                     cursor: pointer;
-                     @include easeOut();
-                  }
-
-                  .fa-trash:hover {
-                     background-color: $danger-color;
-                     color: $white-color;
-                  }
-               }
-
-               img {
-                  width: 100%;
-                  height: 250px;
-                  border-radius: 5px;
-                  object-fit: cover;
-               }
-
-               small {
-                  background-color: rgba($dark-color, 0.6);
-                  opacity: 0;
-                  position: absolute;
-                  bottom: 0%;
-                  padding: 0.5rem 0;
-                  left: 50%;
-                  transform: translate(-50%, -0%);
-                  text-align: center;
-                  font-weight: bold;
-                  width: 100%;
-                  @include easeOut();
-
-                  i {
-                     color: $grey-color;
-                     opacity: 0.5;
-                     @include easeOut();
-                     cursor: pointer;
-
-                     &:hover {
-                        opacity: 1;
-                        color: $white-color;
-                     }
-                  }
-               }
-
-               &:hover small,
-               &:hover .head i {
-                  opacity: 1;
                }
             }
          }

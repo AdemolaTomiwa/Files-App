@@ -36,7 +36,7 @@ const AllFilesPage = () => {
 
    return (
       <div className="landing-page">
-         <div className="favorite-files">
+         <div className="recent-files">
             <div className="head">
                <h4>All Files</h4>
             </div>

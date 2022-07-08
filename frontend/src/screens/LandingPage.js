@@ -36,7 +36,7 @@ const LandingPage = () => {
 
    return (
       <div className="landing-page">
-         <div className="favorite-files">
+         <div className="recent-files">
             <div className="head">
                <h4>Recent Files</h4>
             </div>

@@ -15,6 +15,7 @@ import Footer from './components/Footer';
 import CreateFilePage from './screens/CreateFilePage';
 import AddFieldPage from './screens/AddFieldPage';
 import AllFilesPage from './screens/AllFilesPage';
+import PhotosPage from './screens/PhotosPage';
 
 class App extends Component {
    render() {
@@ -32,6 +33,7 @@ class App extends Component {
                      <Route path="/files/:id" element={<FilePage />} />
                      <Route path="/createfile" element={<CreateFilePage />} />
                      <Route path="/addfield/:id" element={<AddFieldPage />} />
+                     <Route path="/photos" element={<PhotosPage />} />
                   </Routes>
                </div>
                <Footer />

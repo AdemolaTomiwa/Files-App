@@ -22,7 +22,7 @@ const Photo = ({ photo, updatedDescHandler, openConfirmModal }) => {
       <>
          <div className="photo">
             <div className="head">
-               <i className="far fa-star"></i>
+               {/* <i className="far fa-star"></i> */}
                <i
                   onClick={() => openConfirmModal(photo)}
                   className="fas fa-trash"
