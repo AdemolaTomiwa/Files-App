@@ -28,6 +28,9 @@ import {
    GET_FILES_REQUEST,
    GET_FILES_SUCCESS,
    GET_FILES_FAIL,
+   GET_PHOTOS_REQUEST,
+   GET_PHOTOS_SUCCESS,
+   GET_PHOTOS_FAIL,
 } from '../constants/fileConstants';
 
 export const getFilesReducer = (state = { files: [] }, action) => {
@@ -71,6 +74,22 @@ export const getFileReducer = (
             photos: action.payload.photos,
          };
       case GET_FILE_FAIL:
+         return { loading: false };
+      default:
+         return state;
+   }
+};
+
+export const getPhotosReducer = (state = { photos: [] }, action) => {
+   switch (action.type) {
+      case GET_PHOTOS_REQUEST:
+         return { loading: true };
+      case GET_PHOTOS_SUCCESS:
+         return {
+            loading: false,
+            photos: action.payload.map((file) => file.photos),
+         };
+      case GET_PHOTOS_FAIL:
          return { loading: false };
       default:
          return state;

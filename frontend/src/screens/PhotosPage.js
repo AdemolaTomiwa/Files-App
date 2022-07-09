@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { clearErrors, returnErrors } from '../actions/errorActions';
 import { getFiles } from '../actions/fileActions';
 import Photo from '../components/Photo';
@@ -15,11 +15,11 @@ const PhotosPage = () => {
    const userLogin = useSelector((state) => state.userLogin);
    const { loggedUser } = userLogin;
 
-   const userFiles = useSelector((state) => state.getFiles);
-   const { files, loading } = userFiles;
+   // const userFiles = useSelector((state) => state.getFiles);
+   // const { files, loading } = userFiles;
 
-   const errorState = useSelector((state) => state.error);
-   const { msg } = errorState;
+   // const errorState = useSelector((state) => state.error);
+   // const { msg } = errorState;
 
    useEffect(() => {
       dispatch(clearErrors());
@@ -29,12 +29,8 @@ const PhotosPage = () => {
          navigate('/login');
       } else {
          dispatch(getFiles());
-
-         // if (files) {
-         //    return console.log(files);
-         // }
       }
-   }, [user, loggedUser, navigate, dispatch, files]);
+   }, [user, loggedUser, navigate, dispatch]);
 
    const photo = {
       url: '	http://res.cloudinary.com/the-tom-media/image/upload/v1656986729/z7ofpeufxky28zad1wgm.jpg',

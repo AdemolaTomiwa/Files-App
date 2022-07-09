@@ -15,13 +15,6 @@ router.get('/', auth, (req, res) => {
       .catch((err) => res.status(400).json({ msg: 'An error occured!' }));
 });
 
-// Get all photos if any
-router.get('/all/photos', auth, (req, res) => {
-   File.find({ user: req.user.id })
-      .then((files) => res.status(200).json(file))
-      .catch((err) => res.status(400).json({ msg: 'An error occured!' }));
-});
-
 // Get logged in user recent Files
 // GET @/api/files
 // Private

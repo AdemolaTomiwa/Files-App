@@ -1,7 +1,6 @@
 import React from 'react';
 
-const ImageModal = ({ photo, src, alt, caption, onClose }) => {
-   console.log(photo);
+const ImageModal = ({ photo, onClose }) => {
    return (
       <div className="modal">
          <span className="close" onClick={onClose}>

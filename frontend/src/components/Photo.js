@@ -50,9 +50,6 @@ const Photo = ({ photo, updatedDescHandler, openConfirmModal }) => {
          {openImageModal && (
             <ImageModal
                photo={photo}
-               src="https://source.unsplash.com/NQSWvyVRIJk/800x599"
-               alt="snow"
-               caption="caption"
                onClose={() => setOpenImageModal(false)}
             />
          )}

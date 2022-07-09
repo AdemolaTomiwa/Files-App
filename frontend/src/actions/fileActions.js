@@ -29,6 +29,9 @@ import {
    GET_FILES_REQUEST,
    GET_FILES_SUCCESS,
    GET_FILES_FAIL,
+   GET_PHOTOS_REQUEST,
+   GET_PHOTOS_SUCCESS,
+   GET_PHOTOS_FAIL,
 } from '../constants/fileConstants';
 
 import { returnErrors } from './errorActions';
@@ -67,6 +70,24 @@ export const getRecentFiles = () => (dispatch, getState) => {
       .catch((err) => {
          dispatch(returnErrors(err.response.data.msg));
          dispatch({ type: GET_RECENT_FILES_FAIL });
+      });
+};
+
+// Get all photos
+export const getPhotos = () => (dispatch, getState) => {
+   dispatch({ type: GET_PHOTOS_REQUEST });
+
+   axios
+      .get('/api/files/all/photos', tokenConfig(getState))
+      .then((res) => {
+         dispatch({
+            type: GET_PHOTOS_SUCCESS,
+            payload: res.data,
+         });
+      })
+      .catch((err) => {
+         dispatch(returnErrors(err.response.data.msg));
+         dispatch({ type: GET_PHOTOS_FAIL });
       });
 };
 

@@ -13,6 +13,7 @@ const UploadModal = ({ closeModal, id, photos }) => {
    const [description, setDescription] = useState('');
    const [loadingUpload, setLoadingUpload] = useState(false);
    const [image, setImage] = useState([]);
+   const [public_id, setPublic_id] = useState([]);
    const [existingPhotos, setExistingPhotos] = useState({});
    const [error, setError] = useState('');
    const [previewSource, setPreviewSource] = useState('');
@@ -48,7 +49,9 @@ const UploadModal = ({ closeModal, id, photos }) => {
             axios
                .post('/api/uploads', { data: binaryStr })
                .then((res) => {
-                  setImage(res.data);
+                  // console.log(res.data);
+                  setImage(res.data.url);
+                  setPublic_id(res.data.public_id);
                   setLoadingUpload(false);
 
                   setPreviewSource(binaryStr);
@@ -66,7 +69,7 @@ const UploadModal = ({ closeModal, id, photos }) => {
    const submithandler = (e) => {
       e.preventDefault();
 
-      const imageObj = [{ url: image, description, id: uuidv4() }];
+      const imageObj = [{ url: image, public_id, description, id: uuidv4() }];
 
       const photos = existingPhotos.concat(imageObj);
 
@@ -117,7 +120,7 @@ const UploadModal = ({ closeModal, id, photos }) => {
                {previewSource && (
                   <div>
                      <img src={previewSource} alt="" />
-                     <h6>{image}</h6>
+                     {/* <h6>Image Uploaded!</h6> */}
                   </div>
                )}
             </div>

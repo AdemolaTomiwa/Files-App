@@ -1,6 +1,12 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { returnErrors } from '../actions/errorActions';
 import { updateFile } from '../actions/fileActions';
+import {
+   UPDATE_FILE_FAIL,
+   UPDATE_FILE_REQUEST,
+} from '../constants/fileConstants';
 import ConfirmDeleteImageModal from './ConfirmDeleteImageModal';
 import Message from './Message';
 import Photo from './Photo';
@@ -33,14 +39,30 @@ const PhotoFields = ({ id, photos }) => {
    };
 
    const deletePhotoHandler = (deletePhoto) => {
-      let fiii = photos.filter((photo) => photo.id !== deletePhoto.id);
+      // console.log(deletePhoto);
 
-      const newPhotos = {
-         photos: [...fiii],
-         id,
+      const publicIdObj = {
+         public_id: deletePhoto.public_id,
       };
 
-      dispatch(updateFile(newPhotos));
+      axios
+         .post('/api/uploads/delete', publicIdObj)
+         .then((res) => {
+            dispatch({ type: UPDATE_FILE_REQUEST });
+
+            let fiii = photos.filter((photo) => photo.id !== deletePhoto.id);
+
+            const newPhotos = {
+               photos: [...fiii],
+               id,
+            };
+
+            dispatch(updateFile(newPhotos));
+         })
+         .catch((err) => {
+            dispatch(returnErrors(err.response.data.msg));
+            dispatch({ type: UPDATE_FILE_FAIL });
+         });
    };
 
    const openConfirmModalHandler = (photo) => {
@@ -55,7 +77,7 @@ const PhotoFields = ({ id, photos }) => {
 
    return (
       <div className="photofields">
-         <div className="head">
+         <div id="head">
             <h5>Photos</h5>
             <h6 onClick={openModalHandler}>
                <i className="fas fa-plus"></i>Add Photos

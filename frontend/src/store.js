@@ -17,6 +17,7 @@ import {
    deleteFileReducer,
    updateFileReducer,
    updateFileFieldReducer,
+   getPhotosReducer,
 } from './reducers/fileReducer';
 
 const reducer = combineReducers({
@@ -31,6 +32,7 @@ const reducer = combineReducers({
    deleteFile: deleteFileReducer,
    updateFile: updateFileReducer,
    updateField: updateFileFieldReducer,
+   getPhotos: getPhotosReducer,
    error: errorReducer,
 });
 
