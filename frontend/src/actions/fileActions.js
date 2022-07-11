@@ -74,11 +74,11 @@ export const getRecentFiles = () => (dispatch, getState) => {
 };
 
 // Get all photos
-export const getPhotos = () => (dispatch, getState) => {
+export const getPhotos = (id) => (dispatch, getState) => {
    dispatch({ type: GET_PHOTOS_REQUEST });
 
    axios
-      .get('/api/files/all/photos', tokenConfig(getState))
+      .post('/api/uploads/photos', id)
       .then((res) => {
          dispatch({
             type: GET_PHOTOS_SUCCESS,

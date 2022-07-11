@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ImageModal = ({ photo, onClose }) => {
+const ImageModal = ({ photo, onClose, url }) => {
    return (
       <div className="modal">
          <span className="close" onClick={onClose}>
@@ -9,7 +9,7 @@ const ImageModal = ({ photo, onClose }) => {
          <div className="modal-container">
             <img
                className="modal-content"
-               src={photo.url}
+               src={photo.url ? photo.url : url}
                alt={photo.description}
             />
             <h6 className="caption">{photo.description}</h6>

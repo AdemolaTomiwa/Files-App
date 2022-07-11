@@ -7,7 +7,7 @@ import { updateFile } from '../actions/fileActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 
-const UploadModal = ({ closeModal, id, photos }) => {
+const UploadModal = ({ closeModal, id, photos, userId }) => {
    const dispatch = useDispatch();
 
    const [description, setDescription] = useState('');
@@ -33,38 +33,46 @@ const UploadModal = ({ closeModal, id, photos }) => {
       }
    }, [success, closeModal, photos]);
 
-   const onDrop = useCallback((acceptedFiles) => {
-      acceptedFiles.forEach((file) => {
-         const reader = new FileReader();
+   const onDrop = useCallback(
+      (acceptedFiles) => {
+         acceptedFiles.forEach((file) => {
+            const reader = new FileReader();
 
-         reader.readAsDataURL(file);
+            reader.readAsDataURL(file);
 
-         reader.onabort = () => console.log('file reading was aborted');
-         reader.onerror = () => console.log('file reading has failed');
-         reader.onload = () => {
-            // Do whatever you want with the file contents
-            const binaryStr = reader.result;
+            reader.onabort = () => console.log('file reading was aborted');
+            reader.onerror = () => console.log('file reading has failed');
+            reader.onload = () => {
+               // Do whatever you want with the file contents
+               const binaryStr = reader.result;
 
-            setLoadingUpload(true);
-            axios
-               .post('/api/uploads', { data: binaryStr })
-               .then((res) => {
-                  // console.log(res.data);
-                  setImage(res.data.url);
-                  setPublic_id(res.data.public_id);
-                  setLoadingUpload(false);
+               const uploadObj = {
+                  data: binaryStr,
+                  userId,
+               };
 
-                  setPreviewSource(binaryStr);
+               setLoadingUpload(true);
+               axios
+                  .post('/api/uploads', uploadObj)
+                  .then((res) => {
+                     // console.log(res.data);
+                     setImage(res.data.url);
+                     setPublic_id(res.data.public_id);
+                     setLoadingUpload(false);
 
-                  setError('');
-               })
-               .catch((err) => {
-                  setLoadingUpload(false);
-                  setError(err.response.data.msg);
-               });
-         };
-      });
-   }, []);
+                     setPreviewSource(binaryStr);
+
+                     setError('');
+                  })
+                  .catch((err) => {
+                     setLoadingUpload(false);
+                     setError(err.response.data.msg);
+                  });
+            };
+         });
+      },
+      [userId]
+   );
 
    const submithandler = (e) => {
       e.preventDefault();

@@ -4,18 +4,38 @@ import { auth } from '../middleware/auth.js';
 
 const router = express.Router();
 
+// Get all files
+router.post('/photos', async (req, res) => {
+   try {
+      const { id } = req.body;
+
+      const { resources } = await cloudinary.v2.search
+         .expression(`tags: ${id}`)
+         .max_results(30)
+         .execute();
+
+      const url = resources.map((file) => file.url);
+
+      res.json(url);
+   } catch (err) {
+      res.status(500).json({
+         msg: 'Something went wrong! Image not uploaded!',
+      });
+   }
+});
 // Upload a photo
 // POST @/api/upload
 // Public
 router.post('/', async (req, res) => {
    try {
-      const fileStr = req.body.data;
+      const { data, userId } = req.body;
 
-      const uploadResponse = await cloudinary.uploader.upload(fileStr, {
-         upload_preset: 'files',
+      const uploadResponse = await cloudinary.v2.uploader.upload(data, {
+         upload_preset: 'files_preset',
+         tags: userId,
       });
 
-      res.send({
+      res.json({
          url: uploadResponse.url,
          public_id: uploadResponse.public_id,
       });
@@ -37,14 +57,14 @@ router.post('/delete', async (req, res) => {
          public_id,
          { invalidate: true },
          {
-            upload_preset: 'files',
+            upload_preset: 'files_preset',
          }
       );
 
       res.send({ success: true });
    } catch (err) {
       res.status(500).json({
-         msg: 'Something went wrong! Image not uploaded!',
+         msg: 'Something went wrong! Image not deleted!',
       });
    }
 });

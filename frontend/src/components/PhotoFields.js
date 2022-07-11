@@ -12,7 +12,7 @@ import Message from './Message';
 import Photo from './Photo';
 import UploadModal from './UploadModal';
 
-const PhotoFields = ({ id, photos }) => {
+const PhotoFields = ({ id, photos, userId }) => {
    const dispatch = useDispatch();
 
    const [openModal, setOpenModal] = useState(false);
@@ -103,6 +103,7 @@ const PhotoFields = ({ id, photos }) => {
                closeModal={closeModalHandler}
                photos={photos}
                id={id}
+               userId={userId}
             />
          )}
 

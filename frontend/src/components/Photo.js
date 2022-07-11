@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import EditImageDescModal from './EditImageDescModal';
 import ImageModal from './ImageModal';
 
-const Photo = ({ photo, updatedDescHandler, openConfirmModal }) => {
+const Photo = ({ photo, url, updatedDescHandler, openConfirmModal }) => {
    const [openEditModal, setOpenEditModal] = useState(false);
    const [openImageModal, setOpenImageModal] = useState(false);
+
+   // console.log(photo);
 
    const openEditModalHandler = () => {
       setOpenEditModal(true);
@@ -22,21 +24,25 @@ const Photo = ({ photo, updatedDescHandler, openConfirmModal }) => {
       <>
          <div className="photo">
             <div className="head">
-               {/* <i className="far fa-star"></i> */}
-               <i
-                  onClick={() => openConfirmModal(photo)}
-                  className="fas fa-trash"
-               ></i>
+               {photo && (
+                  <i
+                     onClick={() => openConfirmModal(photo)}
+                     className="fas fa-trash"
+                  ></i>
+               )}
             </div>
             <img
                onClick={openModalHandler}
-               src={photo.url}
+               src={photo.url ? photo.url : url}
                alt={photo.description}
             />
-            <small>
-               {photo.description}{' '}
-               <i onClick={openEditModalHandler} className="fas fa-edit"></i>
-            </small>
+
+            {photo && (
+               <small>
+                  {photo.description}{' '}
+                  <i onClick={openEditModalHandler} className="fas fa-edit"></i>
+               </small>
+            )}
          </div>
 
          {openEditModal && (
@@ -50,6 +56,7 @@ const Photo = ({ photo, updatedDescHandler, openConfirmModal }) => {
          {openImageModal && (
             <ImageModal
                photo={photo}
+               url={url}
                onClose={() => setOpenImageModal(false)}
             />
          )}

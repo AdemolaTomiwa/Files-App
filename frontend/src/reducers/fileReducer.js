@@ -87,7 +87,7 @@ export const getPhotosReducer = (state = { photos: [] }, action) => {
       case GET_PHOTOS_SUCCESS:
          return {
             loading: false,
-            photos: action.payload.map((file) => file.photos),
+            photos: action.payload,
          };
       case GET_PHOTOS_FAIL:
          return { loading: false };

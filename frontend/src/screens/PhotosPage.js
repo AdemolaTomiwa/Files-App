@@ -2,8 +2,10 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearErrors, returnErrors } from '../actions/errorActions';
-import { getFiles } from '../actions/fileActions';
+import { getPhotos } from '../actions/fileActions';
 import Photo from '../components/Photo';
+import Loader from '../components/Loader';
+import Message from '../components/Message';
 
 const PhotosPage = () => {
    const navigate = useNavigate();
@@ -15,11 +17,11 @@ const PhotosPage = () => {
    const userLogin = useSelector((state) => state.userLogin);
    const { loggedUser } = userLogin;
 
-   // const userFiles = useSelector((state) => state.getFiles);
-   // const { files, loading } = userFiles;
+   const userPhotos = useSelector((state) => state.getPhotos);
+   const { loading, photos } = userPhotos;
 
-   // const errorState = useSelector((state) => state.error);
-   // const { msg } = errorState;
+   const errorState = useSelector((state) => state.error);
+   const { msg } = errorState;
 
    useEffect(() => {
       dispatch(clearErrors());
@@ -28,27 +30,40 @@ const PhotosPage = () => {
 
          navigate('/login');
       } else {
-         dispatch(getFiles());
+         const id = {
+            id: user.id,
+         };
+
+         dispatch(getPhotos(id));
       }
    }, [user, loggedUser, navigate, dispatch]);
-
-   const photo = {
-      url: '	http://res.cloudinary.com/the-tom-media/image/upload/v1656986729/z7ofpeufxky28zad1wgm.jpg',
-      description: 'Tomiwa',
-   };
 
    return (
       <div className="photospage">
          <div className="head">
             <h4>All Photos</h4>
          </div>
-         <div className="photos">
-            <Photo photo={photo} />
-            <Photo photo={photo} />
-            <Photo photo={photo} />
-            <Photo photo={photo} />
-            <Photo photo={photo} />
-            <Photo photo={photo} />
+         <div>
+            {loading ? (
+               <Loader />
+            ) : msg ? (
+               <Message msg={msg} variant="error" box />
+            ) : photos.length === 0 ? (
+               <Message msg="You have no photos!" variant="success" box />
+            ) : (
+               <div className="photos">
+                  {photos.map((photo, index) => (
+                     <Photo
+                        key={index}
+                        photo=""
+                        url={photo}
+                        // id={id}
+                        // updatedDescHandler={updatedDescHandler}
+                        // openConfirmModal={openConfirmModalHandler}
+                     />
+                  ))}
+               </div>
+            )}
          </div>
       </div>
    );

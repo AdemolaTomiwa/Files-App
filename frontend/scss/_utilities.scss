@@ -204,6 +204,7 @@ form {
       justify-content: center;
       position: relative;
       cursor: pointer;
+      @include easeOut();
 
       .head {
          position: absolute;
@@ -234,6 +235,7 @@ form {
          height: 250px;
          border-radius: 5px;
          object-fit: cover;
+         @include easeOut();
       }
 
       small {
@@ -265,6 +267,10 @@ form {
       &:hover small,
       &:hover .head i {
          opacity: 1;
+      }
+
+      &:hover img {
+         opacity: 0.8;
       }
    }
 }

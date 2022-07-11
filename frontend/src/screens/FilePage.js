@@ -169,7 +169,7 @@ const FilePage = () => {
                )}
 
                {/* Phot Fields */}
-               <PhotoFields id={file._id} photos={photos} />
+               <PhotoFields id={file._id} photos={photos} userId={user.id} />
 
                {/* Button */}
                <div className="button">
