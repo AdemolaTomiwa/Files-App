@@ -8,6 +8,7 @@ import CreateFileFormField from '../components/CreateFileFormField';
 import CreateFileFormOption from '../components/CreateFileFormOption';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
+import Meta from '../components/Meta';
 
 const CreateFilePage = () => {
    const dispatch = useDispatch();
@@ -87,6 +88,7 @@ const CreateFilePage = () => {
 
    return (
       <div className="createfile-page">
+         <Meta title="Files | Create File" />
          <form onSubmit={onSubmit}>
             {/* Field Input for the file name */}
             <div className="head">

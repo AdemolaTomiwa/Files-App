@@ -6,6 +6,7 @@ import { getPhotos } from '../actions/fileActions';
 import Photo from '../components/Photo';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
+import Meta from '../components/Meta';
 
 const PhotosPage = () => {
    const navigate = useNavigate();
@@ -40,6 +41,7 @@ const PhotosPage = () => {
 
    return (
       <div className="photospage">
+         <Meta title="Files | Photos" />
          <div className="head">
             <h4>All Photos</h4>
          </div>

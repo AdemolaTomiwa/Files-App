@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Loader from './Loader';
+import Meta from './Meta';
 import Message from './Message';
 
 const FormStepOne = ({ proceed, userEmail, setUserEmail, checkEmail }) => {
@@ -26,6 +27,7 @@ const FormStepOne = ({ proceed, userEmail, setUserEmail, checkEmail }) => {
 
    return (
       <div className="register-page">
+         <Meta title="Files | Register" />
          <div className="head">
             <h3>
                Welcome to <span>Files</span>

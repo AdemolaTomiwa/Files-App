@@ -5,7 +5,7 @@ import userRoute from './routes/userRoute.js';
 import authRoute from './routes/authRoute.js';
 import fileRoute from './routes/fileRoute.js';
 import uploadRoute from './routes/uploadRoute.js';
-import cloudinary from './middleware/cloudinary.js';
+import path from 'path';
 
 dotenv.config();
 
@@ -26,6 +26,19 @@ app.use('/api/users', userRoute);
 app.use('/api/auth', authRoute);
 app.use('/api/files', fileRoute);
 app.use('/api/uploads', uploadRoute);
+
+const __dirname = path.resolve();
+if (process.env.NODE_ENV === 'production') {
+   app.use(express.static(path.join(__dirname, '/frontend/build')));
+
+   app.get('*', (req, res) =>
+      res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
+   );
+} else {
+   app.get('/', (req, res) => {
+      res.send('API is running...');
+   });
+}
 
 const PORT = process.env.PORT || 5000;
 

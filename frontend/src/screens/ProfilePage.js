@@ -8,6 +8,7 @@ import EditUserNameModal from '../components/EditUserNameModal';
 import FileBox from '../components/FileBox';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
+import Meta from '../components/Meta';
 
 const ProfilePage = () => {
    const navigate = useNavigate();
@@ -44,6 +45,7 @@ const ProfilePage = () => {
 
    return (
       <div className="profilepage">
+         <Meta title="Files | Profile" />
          {loading ? (
             <Loader />
          ) : msg ? (

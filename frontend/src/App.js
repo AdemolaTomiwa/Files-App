@@ -19,12 +19,14 @@ import PhotosPage from './screens/PhotosPage';
 import SearchPage from './screens/SearchPage';
 import UserButton from './components/UserButton';
 import ProfilePage from './screens/ProfilePage';
+import ScrollToTop from './components/ScrollToTop';
 
 class App extends Component {
    render() {
       return (
          <Provider store={store}>
             <Router>
+               <ScrollToTop />
                <Header />
                <div className="container">
                   <Routes>

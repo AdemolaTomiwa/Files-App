@@ -6,6 +6,7 @@ import { getFiles } from '../actions/fileActions';
 import FileBox from '../components/FileBox';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
+import Meta from '../components/Meta';
 import SearchBox from '../components/SearchBox';
 
 const SearchPage = () => {
@@ -38,6 +39,8 @@ const SearchPage = () => {
 
    return (
       <div className="searchpage">
+         <Meta title="Files | Search" />
+
          <SearchBox />
 
          {loading ? (

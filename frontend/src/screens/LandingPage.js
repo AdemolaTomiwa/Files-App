@@ -6,6 +6,7 @@ import { getRecentFiles } from '../actions/fileActions';
 import FileBox from '../components/FileBox';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
+import Meta from '../components/Meta';
 
 const LandingPage = () => {
    const navigate = useNavigate();
@@ -36,6 +37,7 @@ const LandingPage = () => {
 
    return (
       <div className="landing-page">
+         <Meta title="Files" />
          <div className="recent-files">
             <div className="head">
                <h4>Recent Files</h4>

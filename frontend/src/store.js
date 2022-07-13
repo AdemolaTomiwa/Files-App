@@ -1,6 +1,6 @@
-import { createStore, applyMiddleware, combineReducers } from 'redux';
+import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
 import thunk from 'redux-thunk';
-import { composeWithDevTools } from 'redux-devtools-extension';
+// import { composeWithDevTools } from 'redux-devtools-extension';
 
 import {
    userCheckReducer,
@@ -55,11 +55,18 @@ const initialState = {
 
 const middleware = [thunk];
 
-// For Development
+// // For Development
+// const store = createStore(
+//    reducer,
+//    initialState,
+//    composeWithDevTools(applyMiddleware(...middleware))
+// );
+
+// For Production
 const store = createStore(
    reducer,
    initialState,
-   composeWithDevTools(applyMiddleware(...middleware))
+   compose(applyMiddleware(...middleware))
 );
 
 export default store;

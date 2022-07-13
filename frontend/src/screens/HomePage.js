@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import Meta from '../components/Meta';
 
 const HomePage = () => {
    const navigate = useNavigate();
@@ -28,6 +29,7 @@ const HomePage = () => {
 
    return (
       <div className="homepage">
+         <Meta title="Files" />
          <div className="content">
             <h1>Files</h1>
             <h4>あらゆる種類のファイルを追跡します</h4>

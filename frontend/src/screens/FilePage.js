@@ -10,6 +10,7 @@ import ConfirmModal from '../components/ConfirmModal';
 import ConfirmDeleteFileModal from '../components/ConfirmDeleteFileModal';
 import EditFileNameModal from '../components/EditFileNameModal';
 import PhotoFields from '../components/PhotoFields';
+import Meta from '../components/Meta';
 
 const FilePage = () => {
    const params = useParams();
@@ -111,6 +112,7 @@ const FilePage = () => {
             <Message msg={msg} variant="error" box />
          ) : (
             <div className="file">
+               <Meta title={`Files | ${file.fileName}`} />
                <div className="head">
                   <h4>{file.fileName}</h4>
                </div>
