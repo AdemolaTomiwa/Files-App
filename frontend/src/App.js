@@ -16,6 +16,9 @@ import CreateFilePage from './screens/CreateFilePage';
 import AddFieldPage from './screens/AddFieldPage';
 import AllFilesPage from './screens/AllFilesPage';
 import PhotosPage from './screens/PhotosPage';
+import SearchPage from './screens/SearchPage';
+import UserButton from './components/UserButton';
+import ProfilePage from './screens/ProfilePage';
 
 class App extends Component {
    render() {
@@ -34,8 +37,12 @@ class App extends Component {
                      <Route path="/createfile" element={<CreateFilePage />} />
                      <Route path="/addfield/:id" element={<AddFieldPage />} />
                      <Route path="/photos" element={<PhotosPage />} />
+                     <Route path="/search" element={<SearchPage />} />
+                     <Route path="/search/:keyword" element={<SearchPage />} />
+                     <Route path="/profile" element={<ProfilePage />} />
                   </Routes>
                </div>
+               <UserButton />
                <Footer />
             </Router>
          </Provider>

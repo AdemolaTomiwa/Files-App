@@ -48,7 +48,7 @@ const LandingPage = () => {
                <Message msg="You have no files!" variant="success" box />
             ) : (
                <>
-                  <div className="content">
+                  <div className="file-content">
                      {files.map((file) => (
                         <FileBox key={file._id} file={file} />
                      ))}

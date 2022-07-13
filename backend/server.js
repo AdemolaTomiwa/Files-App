@@ -27,17 +27,6 @@ app.use('/api/auth', authRoute);
 app.use('/api/files', fileRoute);
 app.use('/api/uploads', uploadRoute);
 
-app.get('/tomiwa', (req, res) => {
-   cloudinary.v2.search
-      .expression(
-         'resource_type:image AND tags=kitten AND uploaded_at>1d AND bytes>1m'
-      )
-      .sort_by('public_id', 'desc')
-      .max_results(30)
-      .execute()
-      .then((result) => console.log(result));
-});
-
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

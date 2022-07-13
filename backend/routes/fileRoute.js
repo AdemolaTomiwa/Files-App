@@ -9,7 +9,32 @@ import File from '../models/fileModel.js';
 // GET @/api/files
 // Private
 router.get('/', auth, (req, res) => {
-   File.find({ user: req.user.id })
+   const keyword = req.query.keyword
+      ? {
+           $or: [
+              {
+                 fileName: {
+                    $regex: req.query.keyword,
+                    $options: 'i',
+                 },
+              },
+              {
+                 fields: {
+                    $regex: req.query.keyword,
+                    $options: 'i',
+                 },
+              },
+              {
+                 photos: {
+                    $regex: req.query.keyword,
+                    $options: 'i',
+                 },
+              },
+           ],
+        }
+      : {};
+
+   File.find({ user: req.user.id, ...keyword })
       .sort({ createdAt: -1 })
       .then((files) => res.status(200).json(files))
       .catch((err) => res.status(400).json({ msg: 'An error occured!' }));

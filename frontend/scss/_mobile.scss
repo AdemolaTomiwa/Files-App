@@ -1,0 +1,543 @@
+@media (max-width: 880px) {
+   body {
+      font-size: 15px;
+   }
+
+   // Font Size
+   //    h1 {
+   //       font-size: 4rem;
+   //    }
+
+   //    h2 {
+   //       font-size: 3rem;
+   //    }
+
+   h3 {
+      font-size: 2.5rem;
+   }
+
+   h4 {
+      font-size: 1.5rem;
+   }
+
+   //    h5 {
+   //       font-size: 1rem;
+   //    }
+
+   //    h6 {
+   //       font-size: 0.9rem;
+   //    }
+
+   .btn {
+      font-size: 0.9rem;
+   }
+
+   // Photos
+
+   .photos {
+      .photo {
+         img {
+            height: 200px;
+         }
+      }
+   }
+
+   .file-content {
+      a {
+         padding: 0;
+         .file {
+            height: 180px;
+
+            .body {
+               .icon {
+                  i {
+                     font-size: 5rem;
+                  }
+               }
+            }
+         }
+      }
+   }
+
+   form {
+      width: 75%;
+   }
+
+   .homepage {
+      .content {
+         margin-top: 3rem;
+
+         h5 {
+            line-height: 2;
+         }
+
+         h1 {
+            font-size: 6rem;
+         }
+      }
+   }
+
+   .register-page,
+   .login-page {
+      width: 75%;
+   }
+
+   .searchpage {
+      .searchbox {
+         form {
+            div {
+               input {
+                  padding: 0.7rem;
+               }
+            }
+         }
+      }
+   }
+
+   .createfile-page {
+      form {
+         width: 80%;
+
+         .head {
+            padding: 0.5rem;
+
+            input {
+               font-size: 1.7rem;
+            }
+         }
+      }
+   }
+
+   .file-page,
+   .profilepage {
+      .file {
+         .showcase {
+            min-height: 300px;
+
+            .icon {
+               i {
+                  font-size: 9rem;
+               }
+            }
+
+            .details {
+               margin-bottom: 0rem;
+            }
+         }
+
+         .button {
+            .btn {
+               i {
+                  font-size: 1rem;
+               }
+            }
+         }
+
+         .fields {
+            .field {
+               margin: 0.5rem 0;
+
+               .content {
+                  .icons {
+                     i {
+                        font-size: 1rem;
+                     }
+                  }
+               }
+            }
+         }
+
+         .photofields {
+            background-color: $dark-color;
+            border-radius: 5px;
+            padding: 1rem;
+
+            .uploadmodal {
+               .content {
+                  width: 80%;
+
+                  .upload-modal {
+                     height: 7rem;
+                  }
+
+                  .modal-active {
+                     height: 7rem;
+                  }
+               }
+            }
+         }
+      }
+
+      .editimagedescmodal {
+         .content {
+            width: 80%;
+
+            .box {
+               .img {
+                  img {
+                     width: 100px;
+                     height: 100px;
+                  }
+               }
+            }
+         }
+      }
+
+      .confirmmodal {
+         .content {
+            width: 60%;
+         }
+      }
+   }
+}
+
+@media (max-width: 680px) {
+   body {
+      font-size: 12px;
+   }
+
+   // Font Size
+   //    h1 {
+   //       font-size: 4rem;
+   //    }
+
+   //    h2 {
+   //       font-size: 3rem;
+   //    }
+
+   h3 {
+      font-size: 2rem;
+   }
+
+   h4 {
+      font-size: 1.2rem;
+   }
+
+   h5 {
+      font-size: 0.8rem;
+   }
+
+   h6 {
+      font-size: 0.6rem;
+   }
+
+   .container {
+      width: 90%;
+   }
+
+   header {
+      height: 100px;
+
+      .header {
+         width: 100%;
+         flex-direction: column;
+         text-align: center;
+      }
+
+      h4 {
+         a {
+            font-size: 2rem;
+         }
+      }
+
+      a {
+         margin: 0;
+      }
+   }
+
+   .btn {
+      font-size: 0.7rem;
+      padding: 0.7rem;
+   }
+
+   // Photos
+   .photos {
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+
+      .photo {
+         img {
+            height: 150px;
+         }
+      }
+   }
+
+   .file-content {
+      .file {
+         height: 150px;
+
+         .body {
+            .icon {
+               i {
+                  font-size: 4rem;
+               }
+            }
+         }
+      }
+   }
+
+   form {
+      width: 85%;
+   }
+
+   .homepage {
+      .content {
+         margin-top: 3rem;
+
+         h5 {
+            line-height: 2;
+         }
+
+         h1 {
+            font-size: 5rem;
+         }
+      }
+   }
+
+   .register-page,
+   .login-page {
+      width: 100%;
+   }
+
+   .createfile-page {
+      form {
+         width: 100%;
+
+         .head {
+            padding: 0.2rem;
+
+            input {
+               font-size: 1rem;
+            }
+         }
+
+         .box {
+            padding: 0.5rem;
+            .icon {
+               i {
+                  font-size: 0.8rem;
+               }
+            }
+         }
+
+         .file-option {
+            padding: 0.5rem;
+
+            max-width: 50px;
+
+            i {
+               font-size: 0.8rem;
+               padding: 0.5rem;
+            }
+         }
+      }
+   }
+
+   .file-page,
+   .profilepage {
+      .file {
+         .showcase {
+            min-height: 250px;
+
+            .icon {
+               i {
+                  font-size: 7rem;
+               }
+            }
+         }
+
+         .button {
+            .btn {
+               i {
+                  font-size: 0.8rem;
+               }
+            }
+         }
+
+         .fields {
+            .field {
+               .content {
+                  .icons {
+                     i {
+                        font-size: 0.8rem;
+                     }
+                  }
+               }
+            }
+         }
+
+         .photofields {
+            .uploadmodal {
+               .content {
+                  width: 90%;
+
+                  .upload-modal {
+                     height: 5rem;
+                  }
+
+                  .modal-active {
+                     height: 5rem;
+                  }
+               }
+            }
+         }
+      }
+
+      .confirmmodal {
+         .content {
+            width: 80%;
+         }
+      }
+   }
+
+   .userButton {
+      i {
+         font-size: 1rem;
+      }
+   }
+
+   form {
+      div {
+         input {
+            font-size: 0.7rem;
+         }
+      }
+   }
+}
+
+@media (max-width: 480px) {
+   body {
+      font-size: 12px;
+   }
+
+   // Font Size
+   //    h1 {
+   //       font-size: 4rem;
+   //    }
+
+   //    h2 {
+   //       font-size: 3rem;
+   //    }
+
+   h3 {
+      font-size: 1.7rem;
+   }
+
+   h4 {
+      font-size: 1rem;
+   }
+
+   h5 {
+      font-size: 0.7rem;
+   }
+
+   h6 {
+      font-size: 0.5rem;
+   }
+
+   // Photos
+   .photos {
+      display: block;
+
+      .photo {
+         margin: 1rem 0;
+         img {
+            height: 200px;
+         }
+      }
+   }
+
+   .file-content {
+      a {
+         .file {
+            height: 120px;
+
+            .body {
+               .icon {
+                  i {
+                     font-size: 3rem;
+                  }
+               }
+            }
+         }
+      }
+   }
+
+   form {
+      width: 95%;
+   }
+
+   .homepage {
+      .content {
+         margin-top: 3rem;
+
+         h5 {
+            line-height: 2;
+         }
+
+         h1 {
+            font-size: 4rem;
+         }
+      }
+   }
+
+   .file-page,
+   .profilepage {
+      .file {
+         .showcase {
+            min-height: 200px;
+
+            .icon {
+               i {
+                  font-size: 5rem;
+               }
+            }
+         }
+
+         .photofields {
+            .uploadmodal {
+               .content {
+                  width: 90%;
+
+                  .head {
+                     h4 {
+                        font-size: 0.9rem;
+                     }
+
+                     p {
+                        font-size: 10px;
+                     }
+                  }
+
+                  .upload-modal {
+                     height: 4rem;
+                  }
+
+                  .modal-active {
+                     height: 4rem;
+                  }
+               }
+            }
+         }
+      }
+
+      .confirmmodal {
+         .content {
+            width: 80%;
+         }
+      }
+   }
+
+   .userButton {
+      i {
+         font-size: 1rem;
+      }
+   }
+
+   form {
+      div {
+         input {
+            font-size: 0.7rem;
+         }
+      }
+   }
+}

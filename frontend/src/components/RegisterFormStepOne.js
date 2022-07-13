@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Loader from './Loader';
-
 import Message from './Message';
 
 const FormStepOne = ({ proceed, userEmail, setUserEmail, checkEmail }) => {
@@ -51,21 +50,6 @@ const FormStepOne = ({ proceed, userEmail, setUserEmail, checkEmail }) => {
                </button>
             </div>
          </form>
-
-         <strong>OR</strong>
-
-         <div className="signup-btn">
-            <div>
-               <button className="btn btn-white">
-                  <i className="fab fa-google"></i> Continue with Google
-               </button>
-            </div>
-            <div>
-               <button className="btn btn-white">
-                  <i className="fab fa-facebook"></i> Continue with Facebook
-               </button>
-            </div>
-         </div>
 
          <strong>
             Already have an account? <Link to="/login">Log In</Link>

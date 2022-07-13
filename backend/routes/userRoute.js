@@ -1,6 +1,7 @@
 import bcrypt from 'bcryptjs';
 import express from 'express';
 import jwt from 'jsonwebtoken';
+import { auth } from '../middleware/auth.js';
 
 const router = express.Router();
 
@@ -100,6 +101,70 @@ router.get('/', (req, res) => {
    User.find()
       .then((user) => res.send(user))
       .catch((err) => res.send(err));
+});
+
+// Get user details
+router.get('/:id', auth, (req, res) => {
+   User.findById(req.params.id)
+      .select('-password')
+      .then((user) => {
+         res.status(200).json(user);
+      })
+      .catch((err) => res.status(400).json({ msg: 'An error occured' }));
+});
+
+// Update user
+router.put('/', auth, (req, res) => {
+   const { firstName, lastName, password, id } = req.body;
+
+   User.findById(id)
+      .then((user) => {
+         if (user) {
+            user.firstName = firstName || user.firstName;
+            user.lastName = lastName || user.lastName;
+
+            if (password) {
+               user.password = password;
+            }
+
+            bcrypt.genSalt(10, (err, salt) => {
+               bcrypt.hash(user.password, salt, (err, hash) => {
+                  if (err) throw err;
+
+                  user.password = hash;
+
+                  // Save user to DB
+                  user
+                     .save()
+                     .then((user) => {
+                        jwt.sign(
+                           { id: user._id },
+                           process.env.JWT_SECRET,
+                           (err, token) => {
+                              if (err) throw err;
+
+                              res.json({
+                                 token,
+                                 user: {
+                                    id: user._id,
+                                    firstName: user.firstName,
+                                    lastName: user.lastName,
+                                    email: user.email,
+                                 },
+                              });
+                           }
+                        );
+                     })
+                     .catch((err) => {
+                        if (err) throw err;
+                     });
+               });
+            });
+         } else {
+            res.status(400).json({ msg: 'An error occured!' });
+         }
+      })
+      .catch((err) => res.status(400).json({ msg: 'An error occured' }));
 });
 
 export default router;

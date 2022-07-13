@@ -6,6 +6,8 @@ import {
    userCheckReducer,
    userRegisterReducer,
    userLoginReducer,
+   userDetailsReducer,
+   updateUserReducer,
 } from './reducers/userReducer';
 import { errorReducer } from './reducers/errorReducer';
 import {
@@ -33,6 +35,8 @@ const reducer = combineReducers({
    updateFile: updateFileReducer,
    updateField: updateFileFieldReducer,
    getPhotos: getPhotosReducer,
+   userDetails: userDetailsReducer,
+   updateUser: updateUserReducer,
    error: errorReducer,
 });
 

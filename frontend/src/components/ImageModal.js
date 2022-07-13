@@ -1,6 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const ImageModal = ({ photo, onClose, url }) => {
+   useEffect(() => {
+      const keyDownHandler = (event) => {
+         if (event.key === 'Escape') {
+            event.preventDefault();
+
+            // 👇️ your logic here
+            onClose();
+         }
+      };
+
+      document.addEventListener('keydown', keyDownHandler);
+
+      // 👇️ clean up event listener
+      return () => {
+         document.removeEventListener('keydown', keyDownHandler);
+      };
+   }, [onClose]);
+
    return (
       <div className="modal">
          <span className="close" onClick={onClose}>

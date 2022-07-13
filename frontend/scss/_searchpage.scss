@@ -1,0 +1,32 @@
+.searchpage {
+   .searchbox {
+      position: relative;
+
+      form {
+         div {
+            input {
+               padding: 1.2rem;
+               font-weight: bolder;
+
+               &:focus {
+                  border-color: $blue-color;
+               }
+            }
+
+            i {
+               position: absolute;
+               top: 50%;
+               right: 2%;
+               transform: translate(-2%, -50%);
+               cursor: pointer;
+               padding: 0.5rem;
+               @include easeOut();
+
+               &:hover {
+                  color: $blue-color;
+               }
+            }
+         }
+      }
+   }
+}

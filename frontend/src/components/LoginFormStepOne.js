@@ -52,21 +52,6 @@ const FormStepOne = ({ proceed, userEmail, setUserEmail, checkEmail }) => {
             </div>
          </form>
 
-         <strong>OR</strong>
-
-         <div className="signup-btn">
-            <div>
-               <button className="btn btn-white">
-                  <i className="fab fa-google"></i> Continue with Google
-               </button>
-            </div>
-            <div>
-               <button className="btn btn-white">
-                  <i className="fab fa-facebook"></i> Continue with Facebook
-               </button>
-            </div>
-         </div>
-
          <strong>
             Don't have an account? <Link to="/register">Register Now</Link>
          </strong>

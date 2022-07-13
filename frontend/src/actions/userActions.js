@@ -3,6 +3,9 @@ import {
    USER_CHECK_FAIL,
    USER_CHECK_REQUEST,
    USER_CHECK_SUCCESS,
+   USER_DETAILS_FAIL,
+   USER_DETAILS_REQUEST,
+   USER_DETAILS_SUCCESS,
    USER_LOGIN_FAIL,
    USER_LOGIN_REQUEST,
    USER_LOGIN_SUCCESS,
@@ -10,6 +13,10 @@ import {
    USER_REGISTER_FAIL,
    USER_REGISTER_REQUEST,
    USER_REGISTER_SUCCESS,
+   USER_UPDATE_FAIL,
+   USER_UPDATE_REQUEST,
+   USER_UPDATE_RESET,
+   USER_UPDATE_SUCCESS,
 } from '../constants/userConstants';
 
 import { returnErrors } from './errorActions';
@@ -115,6 +122,50 @@ export const loginUser = (user) => (dispatch) => {
       .catch((err) => {
          dispatch(returnErrors(err.response.data.msg));
          dispatch({ type: USER_LOGIN_FAIL });
+      });
+};
+
+// Get user details
+export const getUserDetails = (id) => (dispatch, getState) => {
+   dispatch({ type: USER_DETAILS_REQUEST });
+
+   axios
+      .get(`/api/users/${id}`, tokenConfig(getState))
+      .then((res) => {
+         dispatch({
+            type: USER_DETAILS_SUCCESS,
+            payload: res.data,
+         });
+      })
+      .catch((err) => {
+         dispatch(returnErrors(err.response.data.msg));
+         dispatch({ type: USER_DETAILS_FAIL });
+      });
+};
+
+// Update user details
+export const updateUser = (user) => (dispatch, getState) => {
+   dispatch({ type: USER_UPDATE_REQUEST });
+
+   axios
+      .put('/api/users', user, tokenConfig(getState))
+      .then((res) => {
+         dispatch({
+            type: USER_UPDATE_SUCCESS,
+            payload: res.data,
+         });
+
+         dispatch({ type: USER_LOGIN_SUCCESS, payload: res.data });
+         dispatch({ type: USER_REGISTER_SUCCESS, payload: res.data });
+
+         localStorage.setItem('user', JSON.stringify(res.data.user));
+         localStorage.setItem('token', JSON.stringify(res.data.token));
+
+         dispatch({ type: USER_UPDATE_RESET });
+      })
+      .catch((err) => {
+         dispatch(returnErrors(err.response.data.msg));
+         dispatch({ type: USER_UPDATE_FAIL });
       });
 };
 
